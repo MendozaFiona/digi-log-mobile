@@ -9,17 +9,11 @@ class SelectBranch extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       // no appbar
-      body: Center(
-        child: Text(
-          'Select Branch',
-          style: TextStyle(
-            //fontSize: ,
-            //fontWeight: FontWeight.bold,
-            //letterSpacing: 2.0,
-            //color: Colors.grey[600],
-            fontFamily: 'Nunito',
-          ),
-        ),
+      body: Container(
+        padding: EdgeInsets.all(10.0),
+        margin: EdgeInsets.fromLTRB(5.0, 7.0, 3.0, 4.0),
+        color: Colors.blue[400],
+        child: Text(''),
       ),
 
       floatingActionButton: FloatingActionButton(
@@ -30,3 +24,18 @@ class SelectBranch extends StatelessWidget {
     );
   }
 }
+
+/*
+Center(
+  child: Text(
+    'Select Branch',
+    style: TextStyle(
+      //fontSize: ,
+      //fontWeight: FontWeight.bold,
+      //letterSpacing: 2.0,
+      //color: Colors.grey[600],
+      fontFamily: 'Nunito',
+    ),
+  ),
+),
+*/
