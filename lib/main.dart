@@ -12,49 +12,68 @@ class SelectBranch extends StatelessWidget {
 
       body: SafeArea(
         child: Column(
-          children: [Row(
+          children: [
+            
+            Expanded(
+              flex: 5,
+              child: Container(
+                padding: EdgeInsets.only(bottom: 40.0),
+                
+                decoration: BoxDecoration(
+                  color: Color.fromRGBO(25, 24, 81,1),
+                  borderRadius: BorderRadius.vertical(bottom: Radius.circular(50)),
+                ),
 
-            children: [
-
-              Flexible(child:Container(
-                padding: EdgeInsets.all(10.0),
-                //margin: EdgeInsets.fromLTRB(5.0, 7.0, 3.0, 4.0),
-                color: Color.fromRGBO(25, 24, 81,1),
-
-                child: Text('Select BRANCH',
-                  style: TextStyle(
-                    fontSize: 55,
-                    fontWeight: FontWeight.bold,
-                    //letterSpacing: 1.0,
+                child: Align( //optional
+                  alignment: Alignment.bottomCenter,
+                  child: Text('Select BRANCH',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 55,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      fontFamily: 'Nunito',
+                    )
+                  ),
+                ),
+              )
+            ),
+            
+            Flexible(
+              flex: 5,
+              child: Center(
+              
+              child: Container(
+                padding: EdgeInsets.symmetric(vertical: 80, horizontal: 40),
+                //need ba icolumn??? for equal box sizing throughout
+                decoration: BoxDecoration(
+                  border: Border.all(
                     color: Colors.white,
-                    fontFamily: 'Nunito',)
+                  ),
+                  borderRadius: BorderRadius.all(Radius.circular(20)),
                 ),
-              )),
 
-            ] //children
+                child: ElevatedButton(
+                  onPressed: () {},
+                  
+                  child: Text('Cagayan de Oro',
+                    style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.black,
+                        fontFamily: 'Roboto',)
+                  ),
 
-          ),
-          ElevatedButton(
-              onPressed: () {},
-              
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 15.0),
-                child: Text('Cagayan de Oro',
-                  style: TextStyle(
-                      fontSize: 18,
-                      color: Colors.black,
-                      fontFamily: 'Roboto',)
-               )
-              ),
-
-              style: ElevatedButton.styleFrom(
-                primary: Color.fromRGBO(243,233,211,1),
-                side: BorderSide(color: Colors.black),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(40.0),
-                ),
-              ),
-              
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: Size(240,40),
+                    primary: Color.fromRGBO(243,233,211,1),
+                    side: BorderSide(color: Colors.black),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(40.0),
+                    ),
+                  ),
+                  
+                )
+              ))
             )
           ]
         ),
