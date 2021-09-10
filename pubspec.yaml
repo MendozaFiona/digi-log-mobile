@@ -65,6 +65,7 @@ flutter:
     - family: Nunito
       fonts:
         - asset: fonts/Nunito/Nunito-Regular.ttf
+        - asset: fonts/Nunito/Nunito-Black.ttf
         #  style: italic
 
 

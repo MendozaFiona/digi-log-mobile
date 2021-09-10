@@ -1,0 +1,4 @@
+#Fri Sep 10 08:57:12 SGT 2021
+base.0=D\:\\000 Sisi\\Capstone\\digi_log\\digiLogMobile\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+path.0=classes.dex
+renamed.0=classes.dex

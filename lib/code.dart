@@ -47,4 +47,11 @@ IconButton(
   color: Color.,
 )
 
+# floating buttons
+floatingActionButton: FloatingActionButton(
+  onPressed: () {},
+  child: Text('CDO'),
+  backgroundColor: Color.fromRGBO(243, 233, 211, 1),
+),
+
 */
