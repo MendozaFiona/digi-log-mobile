@@ -54,4 +54,13 @@ floatingActionButton: FloatingActionButton(
   backgroundColor: Color.fromRGBO(243, 233, 211, 1),
 ),
 
+# for spaces between paragraphs/text
+SizedBox(height: xx)
+
+# horizontal line
+Divider(
+  height: ,
+  color:
+)
+
 */

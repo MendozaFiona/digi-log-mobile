@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-SafeArea bodyFormat(_title, _optionList) {
+SafeArea bodyFormat(_title, _textList, _functOption) {
   // i think dapat i array ning optionText
   return SafeArea(
     child: Column(children: [
-      Expanded(
-          flex: 5,
+      Flexible(
+          flex: 1,
           child: Container(
             padding: EdgeInsets.only(bottom: 40.0),
             decoration: BoxDecoration(
@@ -26,12 +26,12 @@ SafeArea bodyFormat(_title, _optionList) {
             ),
           )),
       Flexible(
-          flex: 5,
+          flex: 1,
           child: Center(
               child: Container(
                   margin: EdgeInsets.symmetric(vertical: 40, horizontal: 10),
                   padding: EdgeInsets.symmetric(horizontal: 40),
-                  //need ba icolumn??? for equal box sizing throughout
+
                   decoration: BoxDecoration(
                     color: Color.fromRGBO(255, 255, 255, 0.15),
                     border: Border.all(
@@ -39,20 +39,68 @@ SafeArea bodyFormat(_title, _optionList) {
                     ),
                     borderRadius: BorderRadius.all(Radius.circular(20)),
                   ),
-                  //i think dayon dapat i loop ni siya if array/list ang options and probably isulod ug column widget
+                  
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Spacer(),
-                      Column(
-                        children: [
-                          for (var options in _optionList)
-                            optionsLight(options.toString()),
-                        ],
-                      ),
-                      Spacer(),
+                      //Spacer()
+                      if(_functOption == 'optSect')
+                        optionSection(_textList),
+                      if(_functOption == 'fillForm')
+                        fillupForm(_textList)
+
                     ],
                   ))))
     ]),
+  );
+}
+
+Column optionSection(_optionList){
+  return Column(
+    children: [
+      for (var options in _optionList)
+        optionsLight(options.toString()),
+    ]);
+}
+
+Column fillupForm(_formTitle){
+  return Column(children: [      
+      Text(_formTitle,
+        style: TextStyle(
+          fontSize: 23,
+          color: Colors.black,
+          fontWeight: FontWeight.bold,
+          fontFamily: 'Roboto',
+        )),
+      SizedBox(height: 15),
+
+      Container(
+        height: 40,
+        width: 250,
+        child: TextFormField(
+          style: TextStyle(
+            fontSize: 20.0, 
+          ),
+          decoration: InputDecoration(
+            filled: true,
+            fillColor: Colors.white,
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10.0)
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(
+                color:Color.fromRGBO(25, 24, 81, 1),
+              ),
+              borderRadius: BorderRadius.circular(10.0)
+            ),
+            contentPadding: EdgeInsets.symmetric(horizontal: 2, vertical: 3),
+          ),
+        ),
+      ),
+
+      SizedBox(height: 15),
+      optionsLight('Submit')
+    ],
   );
 }
 

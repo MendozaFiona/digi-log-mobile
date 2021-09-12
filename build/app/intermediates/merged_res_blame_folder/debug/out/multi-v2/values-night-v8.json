@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\000 SISI\\Capstone\\digi_logbook\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-night-v8\\values-night-v8.xml",
+            "outputFile": "D:\\000 Sisi\\Capstone\\digi_log\\digiLogMobile\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-night-v8\\values-night-v8.xml",
             "map": [
                 {
-                    "source": "D:\\000 SISI\\Capstone\\digi_logbook\\android\\app\\src\\main\\res\\values-night\\styles.xml",
+                    "source": "D:\\000 Sisi\\Capstone\\digi_log\\digiLogMobile\\android\\app\\src\\main\\res\\values-night\\styles.xml",
                     "from": {
                         "startLines": "3,14",
                         "startColumns": "4,4",
