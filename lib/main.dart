@@ -6,7 +6,8 @@ void main() => runApp(MaterialApp(
           ThemeData(scaffoldBackgroundColor: Color.fromRGBO(253, 180, 23, 1)),
       //home: SelectBranch(),
       //home: VisitUSTP(),
-      home: InputName(),
+      //home: InputName(),
+      home: MapNav(),
     ));
 
 //maybe move this to pages folder under visitor
@@ -44,6 +45,22 @@ class _InputNameState extends State<InputName> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: bodyFormat('Visit USTP CDO', 'Please Input Your Name', 'fillForm'),
+    );
+  }
+}
+
+class MapNav extends StatefulWidget {
+  //const InputName({ Key? key }) : super(key: key);
+
+  @override
+  _MapNavState createState() => _MapNavState();
+}
+
+class _MapNavState extends State<MapNav> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: mapBody('Testing Map Body Title'),
     );
   }
 }
