@@ -1,4 +1,4 @@
-#Sun Sep 12 15:25:31 SGT 2021
-base.0=D\:\\000 Sisi\\Capstone\\digi_log\\digiLogMobile\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+#Mon Sep 27 18:03:17 SGT 2021
+base.0=D\:\\000 SISI\\Capstone\\digi_logbook\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
 path.0=classes.dex
 renamed.0=classes.dex

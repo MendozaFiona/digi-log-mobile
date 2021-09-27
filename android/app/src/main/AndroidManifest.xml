@@ -37,5 +37,10 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+        <!-- uncomment this once you activate free trial already
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="googleapikey" />
+        -->
     </application>
 </manifest>

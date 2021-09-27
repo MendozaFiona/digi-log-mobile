@@ -64,3 +64,18 @@ class _MapNavState extends State<MapNav> {
     );
   }
 }
+
+/* uncomment once gmaps free trial starts
+
+class _MapScreenState extends State<MapScreen> {
+  @override
+  Widget build(BuildContext context){
+    return Scaffold(
+      body: GoogleMap(
+        initialCameraPosition: ,
+      ),
+    );
+  }
+}
+
+*/
