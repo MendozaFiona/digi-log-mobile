@@ -1,0 +1,36 @@
+{
+    "logs": [
+        {
+            "outputFile": "D:\\000 Sisi\\Capstone\\digi_log\\digiLogMobile\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-id\\values-id.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\Mendoza\\.gradle\\caches\\transforms-2\\files-2.1\\3210bd89fac9f81ff321ab282d9f3d66\\jetified-notification-1.2.0\\res\\values-id\\values-id.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "64",
+                        "endOffsets": "115"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Mendoza\\.gradle\\caches\\transforms-2\\files-2.1\\f68b2d5d6c6bf114715fa124c0eefd88\\jetified-ui-1.2.0\\res\\values-id\\values-id.xml",
+                    "from": {
+                        "startLines": "2,3,4",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "55,112,171",
+                        "endColumns": "56,58,59",
+                        "endOffsets": "107,166,226"
+                    },
+                    "to": {
+                        "startLines": "3,4,5",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "120,177,236",
+                        "endColumns": "56,58,59",
+                        "endOffsets": "172,231,291"
+                    }
+                }
+            ]
+        }
+    ]
+}
