@@ -3,6 +3,7 @@ import 'essentials.dart';
 import 'package:location/location.dart';
 //import 'dart:async';
 //import 'package:flutter/services.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 void main() => runApp(MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -54,7 +55,8 @@ class _InputNameState extends State<InputName> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: bodyFormat(context, 'Visit USTP CDO', 'Please Input Your Name', 'fillForm'),
+      body: bodyFormat(
+          context, 'Visit USTP CDO', 'Please Input Your Name', 'fillForm'),
     );
   }
 }
@@ -66,10 +68,7 @@ class MapNav extends StatefulWidget {
   _MapNavState createState() => _MapNavState();
 }
 
-
-
 class _MapNavState extends State<MapNav> {
-
   @override
   void initState() {
     permitLocation();
@@ -77,7 +76,6 @@ class _MapNavState extends State<MapNav> {
   }
 
   permitLocation() async {
-
     Location location = new Location();
 
     bool _serviceEnabled;
@@ -101,9 +99,8 @@ class _MapNavState extends State<MapNav> {
     }
 
     _locationData = await location.getLocation();
-
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -112,14 +109,12 @@ class _MapNavState extends State<MapNav> {
   }
 }
 
-/* uncomment once gmaps free trial starts
 class MapScreen extends StatefulWidget {
   @override
   _MapScreenState createState() => _MapScreenState();
 }
 
 class _MapScreenState extends State<MapScreen> {
-
   static const _initialCameraPosition = CameraPosition(
     target: LatLng(8.484795864552531, 124.65660721180254),
     zoom: 21.0,
@@ -128,13 +123,13 @@ class _MapScreenState extends State<MapScreen> {
   GoogleMapController _googleMapController;
 
   @override
-  void dispose(){
+  void dispose() {
     _googleMapController.dispose();
     super.dispose();
   }
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return Scaffold(
       body: GoogleMap(
         myLocationButtonEnabled: false,
@@ -145,15 +140,11 @@ class _MapScreenState extends State<MapScreen> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Theme.of(context).primaryColor,
         foregroundColor: Colors.black,
-        onPressed:() => _googleMapController.animateCamera(
+        onPressed: () => _googleMapController.animateCamera(
           CameraUpdate.newCameraPosition(_initialCameraPosition),
         ),
         child: const Icon(Icons.center_focus_strong),
       ),
-
     );
   }
 }
-
-*/
-
