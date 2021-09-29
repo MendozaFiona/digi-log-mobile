@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'essentials.dart';
 //import 'dart:async';
 //import 'package:flutter/services.dart';
-import 'package:flutter_map/flutter_map.dart';
-import "package:latlong2/latlong.dart"; 
 
 void main() => runApp(MaterialApp(
       theme:
@@ -70,20 +68,6 @@ class _MapNavState extends State<MapNav> {
 }
 
 /* uncomment once gmaps free trial starts
-
-class _MapScreenState extends State<MapScreen> {
-  @override
-  Widget build(BuildContext context){
-    return Scaffold(
-      body: GoogleMap(
-        initialCameraPosition: ,
-      ),
-    );
-  }
-}
-
-*/
-
 class MapScreen extends StatefulWidget {
   @override
   _MapScreenState createState() => _MapScreenState();
@@ -91,37 +75,31 @@ class MapScreen extends StatefulWidget {
 
 class _MapScreenState extends State<MapScreen> {
 
+  static const _initialCameraPosition = CameraPosition(
+    target: LatLng(8.484795864552531, 124.65660721180254),
+    zoom: 21.0,
+  );
+
+  GoogleMapController _googleMapController;
 
   @override
-  Widget build(BuildContext context) {
-    return FlutterMap(
-      options: MapOptions(
-        center: LatLng(51.5, -0.09),
-        zoom: 13.0,
+  void dispose(){
+    _googleMapController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context){
+    return Scaffold(
+      body: GoogleMap(
+        myLocationButtonEnabled: false,
+        zoomControlsEnabled: false,
+        initialCameraPosition: _initialCameraPosition,
+        onMapCreated: (controller) => _googleMapController = controller,
       ),
-      layers: [
-        TileLayerOptions(
-          urlTemplate: "https://api.mapbox.com/styles/v1/fgxmendoza/cku4vr9dx20fv18nzl1mqfg7q/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiZmd4bWVuZG96YSIsImEiOiJja3BicWRxYmYxMDQxMm9zY3Y3cTY4YWtiIn0.sM5y5SHRDZDirJVOw5fkug",
-          subdomains: ['a', 'b', 'c'],
-          attributionBuilder: (_) {
-            return Text("© OpenStreetMap contributors");
-          },
-        ),
-        MarkerLayerOptions(
-          markers: [
-            Marker(
-              width: 80.0,
-              height: 80.0,
-              point: LatLng(51.5, -0.09),
-              builder: (ctx) =>
-              Container(
-                child: FlutterLogo(),
-              ),
-            ),
-          ],
-        ),
-      ],
     );
   }
 }
+
+*/
 

@@ -22,9 +22,15 @@ environment:
 
 dependencies:
   async: ^2.5.0
+  cached_network_image: ^3.1.0
   flutter:
     sdk: flutter
-  flutter_map: ^0.14.0
+  
+  dio: ^4.0.0
+  flutter_polyline_points: ^0.2.6
+  google_maps_flutter: ^2.0.2
+  
+
 
 dev_dependencies:
   flutter_test:
