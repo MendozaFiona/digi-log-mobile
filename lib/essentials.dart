@@ -1,3 +1,4 @@
+import 'package:digi_logbook/main.dart';
 import 'package:flutter/material.dart';
 
 SafeArea mapBody(_title) {
@@ -43,7 +44,7 @@ SafeArea mapBody(_title) {
   );
 }
 
-SafeArea bodyFormat(_title, _textList, _functOption) {
+SafeArea bodyFormat(context, _title, _textList, _functOption) {
   // i think dapat i array ning optionText
   return SafeArea(
     child: Column(children: [
@@ -88,9 +89,9 @@ SafeArea bodyFormat(_title, _textList, _functOption) {
                     children: [
                       //Spacer()
                       if(_functOption == 'optSect')
-                        optionSection(_textList),
+                        optionSection(context, _textList),
                       if(_functOption == 'fillForm')
-                        fillupForm(_textList)
+                        fillupForm(context, _textList)
 
                     ],
                   ))))
@@ -98,15 +99,15 @@ SafeArea bodyFormat(_title, _textList, _functOption) {
   );
 }
 
-Column optionSection(_optionList){
+Column optionSection(context, _optionList){
   return Column(
     children: [
       for (var options in _optionList)
-        optionsLight(options.toString()),
+        optionsLight(context, options.toString()),
     ]);
 }
 
-Column fillupForm(_formTitle){
+Column fillupForm(context, _formTitle){
   return Column(children: [      
       Text(_formTitle,
         style: TextStyle(
@@ -142,14 +143,24 @@ Column fillupForm(_formTitle){
       ),
 
       SizedBox(height: 15),
-      optionsLight('Submit')
+      optionsLight(context, 'Submit')
     ],
   );
 }
 
-ElevatedButton optionsLight(_optionText) {
+ElevatedButton optionsLight(context, _optionText) {
   return ElevatedButton(
-    onPressed: () {},
+    onPressed: () {
+      if(_optionText == 'Cagayan de Oro'){
+        Navigator.popAndPushNamed(context,'/visitUSTP');
+      }
+      else if(_optionText == 'View Map'){
+        Navigator.popAndPushNamed(context,'/inputName');
+      }
+      else if(_optionText == 'Submit'){
+        Navigator.popAndPushNamed(context,'/mapNav'); 
+      }
+    },
     child: Text(_optionText,
         style: TextStyle(
           fontSize: 18,

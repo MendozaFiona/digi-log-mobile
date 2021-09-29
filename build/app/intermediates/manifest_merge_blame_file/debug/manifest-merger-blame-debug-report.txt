@@ -12,86 +12,140 @@
 12         to allow setting breakpoints, to provide hot reload, etc.
 13    -->
 14    <uses-permission android:name="android.permission.INTERNET" />
-14-->D:\000 Sisi\Capstone\digi_log\digiLogMobileTwo\android\app\src\main\AndroidManifest.xml:4:4-65
-14-->D:\000 Sisi\Capstone\digi_log\digiLogMobileTwo\android\app\src\main\AndroidManifest.xml:4:21-63
-15
-16    <application
-16-->D:\000 Sisi\Capstone\digi_log\digiLogMobileTwo\android\app\src\main\AndroidManifest.xml:6:4-48:19
-17        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-17-->[androidx.core:core:1.1.0] C:\Users\Mendoza\.gradle\caches\transforms-2\files-2.1\2e94107f30f39be366a17347c2bf100b\core-1.1.0\AndroidManifest.xml:24:18-86
-18        android:debuggable="true"
-19        android:icon="@mipmap/ic_launcher"
-19-->D:\000 Sisi\Capstone\digi_log\digiLogMobileTwo\android\app\src\main\AndroidManifest.xml:8:9-43
-20        android:label="digi_logbook" >
-20-->D:\000 Sisi\Capstone\digi_log\digiLogMobileTwo\android\app\src\main\AndroidManifest.xml:7:9-37
-21        <activity
-21-->D:\000 Sisi\Capstone\digi_log\digiLogMobileTwo\android\app\src\main\AndroidManifest.xml:9:9-37:20
-22            android:name="com.example.digi_logbook.MainActivity"
-22-->D:\000 Sisi\Capstone\digi_log\digiLogMobileTwo\android\app\src\main\AndroidManifest.xml:10:13-41
-23            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
-23-->D:\000 Sisi\Capstone\digi_log\digiLogMobileTwo\android\app\src\main\AndroidManifest.xml:13:13-163
-24            android:hardwareAccelerated="true"
-24-->D:\000 Sisi\Capstone\digi_log\digiLogMobileTwo\android\app\src\main\AndroidManifest.xml:14:13-47
-25            android:launchMode="singleTop"
-25-->D:\000 Sisi\Capstone\digi_log\digiLogMobileTwo\android\app\src\main\AndroidManifest.xml:11:13-43
-26            android:theme="@style/LaunchTheme"
-26-->D:\000 Sisi\Capstone\digi_log\digiLogMobileTwo\android\app\src\main\AndroidManifest.xml:12:13-47
-27            android:windowSoftInputMode="adjustResize" >
-27-->D:\000 Sisi\Capstone\digi_log\digiLogMobileTwo\android\app\src\main\AndroidManifest.xml:15:13-55
-28
-29            <!--
-30                 Specifies an Android theme to apply to this Activity as soon as
-31                 the Android process has started. This theme is visible to the user
-32                 while the Flutter UI initializes. After that, this theme continues
-33                 to determine the Window background behind the Flutter UI.
-34            -->
-35            <meta-data
-35-->D:\000 Sisi\Capstone\digi_log\digiLogMobileTwo\android\app\src\main\AndroidManifest.xml:20:13-23:17
-36                android:name="io.flutter.embedding.android.NormalTheme"
-36-->D:\000 Sisi\Capstone\digi_log\digiLogMobileTwo\android\app\src\main\AndroidManifest.xml:21:15-70
-37                android:resource="@style/NormalTheme" />
-37-->D:\000 Sisi\Capstone\digi_log\digiLogMobileTwo\android\app\src\main\AndroidManifest.xml:22:15-52
+14-->D:\000 Sisi\Capstone\digi_log\digiLogMobileGoogle\android\app\src\main\AndroidManifest.xml:4:4-65
+14-->D:\000 Sisi\Capstone\digi_log\digiLogMobileGoogle\android\app\src\main\AndroidManifest.xml:4:21-63
+15    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+15-->D:\000 Sisi\Capstone\digi_log\digiLogMobileGoogle\android\app\src\main\AndroidManifest.xml:5:4-76
+15-->D:\000 Sisi\Capstone\digi_log\digiLogMobileGoogle\android\app\src\main\AndroidManifest.xml:5:21-73
+16    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+16-->D:\000 Sisi\Capstone\digi_log\digiLogMobileGoogle\android\app\src\main\AndroidManifest.xml:6:5-84
+16-->D:\000 Sisi\Capstone\digi_log\digiLogMobileGoogle\android\app\src\main\AndroidManifest.xml:6:22-82
+17    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+17-->[:location] D:\000 Sisi\Capstone\digi_log\digiLogMobileGoogle\build\location\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-81
+17-->[:location] D:\000 Sisi\Capstone\digi_log\digiLogMobileGoogle\build\location\intermediates\library_manifest\debug\AndroidManifest.xml:7:22-78
+18    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- Include required permissions for Google Maps API to run. -->
+18-->[:location] D:\000 Sisi\Capstone\digi_log\digiLogMobileGoogle\build\location\intermediates\library_manifest\debug\AndroidManifest.xml:8:5-79
+18-->[:location] D:\000 Sisi\Capstone\digi_log\digiLogMobileGoogle\build\location\intermediates\library_manifest\debug\AndroidManifest.xml:8:22-76
+19    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+19-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\Mendoza\.gradle\caches\transforms-2\files-2.1\c5de8972dacd649c27c247c9e16de3ac\jetified-play-services-maps-17.0.0\AndroidManifest.xml:23:5-79
+19-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\Mendoza\.gradle\caches\transforms-2\files-2.1\c5de8972dacd649c27c247c9e16de3ac\jetified-play-services-maps-17.0.0\AndroidManifest.xml:23:22-76
+20
+21    <uses-feature
+21-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\Mendoza\.gradle\caches\transforms-2\files-2.1\c5de8972dacd649c27c247c9e16de3ac\jetified-play-services-maps-17.0.0\AndroidManifest.xml:26:5-28:35
+22        android:glEsVersion="0x00020000"
+22-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\Mendoza\.gradle\caches\transforms-2\files-2.1\c5de8972dacd649c27c247c9e16de3ac\jetified-play-services-maps-17.0.0\AndroidManifest.xml:27:9-41
+23        android:required="true" />
+23-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\Mendoza\.gradle\caches\transforms-2\files-2.1\c5de8972dacd649c27c247c9e16de3ac\jetified-play-services-maps-17.0.0\AndroidManifest.xml:28:9-32
+24
+25    <application
+25-->D:\000 Sisi\Capstone\digi_log\digiLogMobileGoogle\android\app\src\main\AndroidManifest.xml:8:4-50:19
+26        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+26-->[androidx.core:core:1.3.2] C:\Users\Mendoza\.gradle\caches\transforms-2\files-2.1\22596e141ed939448a45bb52248db646\core-1.3.2\AndroidManifest.xml:24:18-86
+27        android:debuggable="true"
+28        android:icon="@mipmap/ic_launcher"
+28-->D:\000 Sisi\Capstone\digi_log\digiLogMobileGoogle\android\app\src\main\AndroidManifest.xml:10:9-43
+29        android:label="digi_logbook" >
+29-->D:\000 Sisi\Capstone\digi_log\digiLogMobileGoogle\android\app\src\main\AndroidManifest.xml:9:9-37
+30        <activity
+30-->D:\000 Sisi\Capstone\digi_log\digiLogMobileGoogle\android\app\src\main\AndroidManifest.xml:11:9-39:20
+31            android:name="com.example.digi_logbook.MainActivity"
+31-->D:\000 Sisi\Capstone\digi_log\digiLogMobileGoogle\android\app\src\main\AndroidManifest.xml:12:13-41
+32            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+32-->D:\000 Sisi\Capstone\digi_log\digiLogMobileGoogle\android\app\src\main\AndroidManifest.xml:15:13-163
+33            android:hardwareAccelerated="true"
+33-->D:\000 Sisi\Capstone\digi_log\digiLogMobileGoogle\android\app\src\main\AndroidManifest.xml:16:13-47
+34            android:launchMode="singleTop"
+34-->D:\000 Sisi\Capstone\digi_log\digiLogMobileGoogle\android\app\src\main\AndroidManifest.xml:13:13-43
+35            android:theme="@style/LaunchTheme"
+35-->D:\000 Sisi\Capstone\digi_log\digiLogMobileGoogle\android\app\src\main\AndroidManifest.xml:14:13-47
+36            android:windowSoftInputMode="adjustResize" >
+36-->D:\000 Sisi\Capstone\digi_log\digiLogMobileGoogle\android\app\src\main\AndroidManifest.xml:17:13-55
+37
 38            <!--
-39                 Displays an Android View that continues showing the launch screen
-40                 Drawable until Flutter paints its first frame, then this splash
-41                 screen fades out. A splash screen is useful to avoid any visual
-42                 gap between the end of Android's launch screen and the painting of
-43                 Flutter's first frame.
-44            -->
-45            <meta-data
-45-->D:\000 Sisi\Capstone\digi_log\digiLogMobileTwo\android\app\src\main\AndroidManifest.xml:29:13-32:17
-46                android:name="io.flutter.embedding.android.SplashScreenDrawable"
-46-->D:\000 Sisi\Capstone\digi_log\digiLogMobileTwo\android\app\src\main\AndroidManifest.xml:30:15-79
-47                android:resource="@drawable/launch_background" />
-47-->D:\000 Sisi\Capstone\digi_log\digiLogMobileTwo\android\app\src\main\AndroidManifest.xml:31:15-61
-48
-49            <intent-filter>
-49-->D:\000 Sisi\Capstone\digi_log\digiLogMobileTwo\android\app\src\main\AndroidManifest.xml:33:13-36:29
-50                <action android:name="android.intent.action.MAIN" />
-50-->D:\000 Sisi\Capstone\digi_log\digiLogMobileTwo\android\app\src\main\AndroidManifest.xml:34:17-68
-50-->D:\000 Sisi\Capstone\digi_log\digiLogMobileTwo\android\app\src\main\AndroidManifest.xml:34:25-66
-51
-52                <category android:name="android.intent.category.LAUNCHER" />
-52-->D:\000 Sisi\Capstone\digi_log\digiLogMobileTwo\android\app\src\main\AndroidManifest.xml:35:17-76
-52-->D:\000 Sisi\Capstone\digi_log\digiLogMobileTwo\android\app\src\main\AndroidManifest.xml:35:27-74
-53            </intent-filter>
-54        </activity>
-55        <!--
-56             Don't delete the meta-data below.
-57             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
-58        -->
-59        <meta-data
-59-->D:\000 Sisi\Capstone\digi_log\digiLogMobileTwo\android\app\src\main\AndroidManifest.xml:40:9-42:33
-60            android:name="flutterEmbedding"
-60-->D:\000 Sisi\Capstone\digi_log\digiLogMobileTwo\android\app\src\main\AndroidManifest.xml:41:13-44
-61            android:value="2" />
-61-->D:\000 Sisi\Capstone\digi_log\digiLogMobileTwo\android\app\src\main\AndroidManifest.xml:42:13-30
-62        <!--
-63        uncomment this once you activate free trial already
-64        <meta-data
-65            android:name="com.google.android.geo.API_KEY"
-66            android:value="googleapikey" />
+39                 Specifies an Android theme to apply to this Activity as soon as
+40                 the Android process has started. This theme is visible to the user
+41                 while the Flutter UI initializes. After that, this theme continues
+42                 to determine the Window background behind the Flutter UI.
+43            -->
+44            <meta-data
+44-->D:\000 Sisi\Capstone\digi_log\digiLogMobileGoogle\android\app\src\main\AndroidManifest.xml:22:13-25:17
+45                android:name="io.flutter.embedding.android.NormalTheme"
+45-->D:\000 Sisi\Capstone\digi_log\digiLogMobileGoogle\android\app\src\main\AndroidManifest.xml:23:15-70
+46                android:resource="@style/NormalTheme" />
+46-->D:\000 Sisi\Capstone\digi_log\digiLogMobileGoogle\android\app\src\main\AndroidManifest.xml:24:15-52
+47            <!--
+48                 Displays an Android View that continues showing the launch screen
+49                 Drawable until Flutter paints its first frame, then this splash
+50                 screen fades out. A splash screen is useful to avoid any visual
+51                 gap between the end of Android's launch screen and the painting of
+52                 Flutter's first frame.
+53            -->
+54            <meta-data
+54-->D:\000 Sisi\Capstone\digi_log\digiLogMobileGoogle\android\app\src\main\AndroidManifest.xml:31:13-34:17
+55                android:name="io.flutter.embedding.android.SplashScreenDrawable"
+55-->D:\000 Sisi\Capstone\digi_log\digiLogMobileGoogle\android\app\src\main\AndroidManifest.xml:32:15-79
+56                android:resource="@drawable/launch_background" />
+56-->D:\000 Sisi\Capstone\digi_log\digiLogMobileGoogle\android\app\src\main\AndroidManifest.xml:33:15-61
+57
+58            <intent-filter>
+58-->D:\000 Sisi\Capstone\digi_log\digiLogMobileGoogle\android\app\src\main\AndroidManifest.xml:35:13-38:29
+59                <action android:name="android.intent.action.MAIN" />
+59-->D:\000 Sisi\Capstone\digi_log\digiLogMobileGoogle\android\app\src\main\AndroidManifest.xml:36:17-68
+59-->D:\000 Sisi\Capstone\digi_log\digiLogMobileGoogle\android\app\src\main\AndroidManifest.xml:36:25-66
+60
+61                <category android:name="android.intent.category.LAUNCHER" />
+61-->D:\000 Sisi\Capstone\digi_log\digiLogMobileGoogle\android\app\src\main\AndroidManifest.xml:37:17-76
+61-->D:\000 Sisi\Capstone\digi_log\digiLogMobileGoogle\android\app\src\main\AndroidManifest.xml:37:27-74
+62            </intent-filter>
+63        </activity>
+64        <!--
+65             Don't delete the meta-data below.
+66             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
 67        -->
-68    </application>
-69
-70</manifest>
+68        <meta-data
+68-->D:\000 Sisi\Capstone\digi_log\digiLogMobileGoogle\android\app\src\main\AndroidManifest.xml:42:9-44:33
+69            android:name="flutterEmbedding"
+69-->D:\000 Sisi\Capstone\digi_log\digiLogMobileGoogle\android\app\src\main\AndroidManifest.xml:43:13-44
+70            android:value="2" />
+70-->D:\000 Sisi\Capstone\digi_log\digiLogMobileGoogle\android\app\src\main\AndroidManifest.xml:44:13-30
+71        <!--
+72        uncomment this once you activate free trial already
+73        <meta-data
+74            android:name="com.google.android.geo.API_KEY"
+75            android:value="googleapikey" />
+76        -->
+77        <service
+77-->[:location] D:\000 Sisi\Capstone\digi_log\digiLogMobileGoogle\build\location\intermediates\library_manifest\debug\AndroidManifest.xml:11:9-15:56
+78            android:name="com.lyokone.location.FlutterLocationService"
+78-->[:location] D:\000 Sisi\Capstone\digi_log\digiLogMobileGoogle\build\location\intermediates\library_manifest\debug\AndroidManifest.xml:12:13-71
+79            android:enabled="true"
+79-->[:location] D:\000 Sisi\Capstone\digi_log\digiLogMobileGoogle\build\location\intermediates\library_manifest\debug\AndroidManifest.xml:13:13-35
+80            android:exported="false"
+80-->[:location] D:\000 Sisi\Capstone\digi_log\digiLogMobileGoogle\build\location\intermediates\library_manifest\debug\AndroidManifest.xml:14:13-37
+81            android:foregroundServiceType="location" /> <!-- Needs to be explicitly declared on P+ -->
+81-->[:location] D:\000 Sisi\Capstone\digi_log\digiLogMobileGoogle\build\location\intermediates\library_manifest\debug\AndroidManifest.xml:15:13-53
+82        <uses-library
+82-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\Mendoza\.gradle\caches\transforms-2\files-2.1\c5de8972dacd649c27c247c9e16de3ac\jetified-play-services-maps-17.0.0\AndroidManifest.xml:33:9-35:40
+83            android:name="org.apache.http.legacy"
+83-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\Mendoza\.gradle\caches\transforms-2\files-2.1\c5de8972dacd649c27c247c9e16de3ac\jetified-play-services-maps-17.0.0\AndroidManifest.xml:34:13-50
+84            android:required="false" />
+84-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\Mendoza\.gradle\caches\transforms-2\files-2.1\c5de8972dacd649c27c247c9e16de3ac\jetified-play-services-maps-17.0.0\AndroidManifest.xml:35:13-37
+85
+86        <activity
+86-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\Mendoza\.gradle\caches\transforms-2\files-2.1\7c879cb157fab2c9a5d74c3d70fd64e3\jetified-play-services-base-17.0.0\AndroidManifest.xml:23:9-26:75
+87            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+87-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\Mendoza\.gradle\caches\transforms-2\files-2.1\7c879cb157fab2c9a5d74c3d70fd64e3\jetified-play-services-base-17.0.0\AndroidManifest.xml:24:13-79
+88            android:exported="false"
+88-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\Mendoza\.gradle\caches\transforms-2\files-2.1\7c879cb157fab2c9a5d74c3d70fd64e3\jetified-play-services-base-17.0.0\AndroidManifest.xml:25:13-37
+89            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+89-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\Mendoza\.gradle\caches\transforms-2\files-2.1\7c879cb157fab2c9a5d74c3d70fd64e3\jetified-play-services-base-17.0.0\AndroidManifest.xml:26:13-72
+90
+91        <meta-data
+91-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\Mendoza\.gradle\caches\transforms-2\files-2.1\3c8e7eb3d21ac94d08f658f6d8a1c9f3\jetified-play-services-basement-17.0.0\AndroidManifest.xml:23:9-25:69
+92            android:name="com.google.android.gms.version"
+92-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\Mendoza\.gradle\caches\transforms-2\files-2.1\3c8e7eb3d21ac94d08f658f6d8a1c9f3\jetified-play-services-basement-17.0.0\AndroidManifest.xml:24:13-58
+93            android:value="@integer/google_play_services_version" />
+93-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\Mendoza\.gradle\caches\transforms-2\files-2.1\3c8e7eb3d21ac94d08f658f6d8a1c9f3\jetified-play-services-basement-17.0.0\AndroidManifest.xml:25:13-66
+94    </application>
+95
+96</manifest>
