@@ -14,7 +14,7 @@ void main() => runApp(MaterialApp(
         '/': (context) => SelectBranch(),
         '/visitUSTP': (context) => VisitUSTP(),
         '/inputName': (context) => InputName(),
-        '/mapNav': (context) => MapNav(),
+        '/mapNav': (context) => MapScreen(),
       },
       //home: VisitUSTP(),
       //home: InputName(),
@@ -61,14 +61,12 @@ class _InputNameState extends State<InputName> {
   }
 }
 
-class MapNav extends StatefulWidget {
-  //const InputName({ Key? key }) : super(key: key);
-
+class MapScreen extends StatefulWidget {
   @override
-  _MapNavState createState() => _MapNavState();
+  _MapScreenState createState() => _MapScreenState();
 }
 
-class _MapNavState extends State<MapNav> {
+class _MapScreenState extends State<MapScreen> {
   @override
   void initState() {
     permitLocation();
@@ -109,20 +107,6 @@ class _MapNavState extends State<MapNav> {
     _locationData = await location.getLocation();
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: mapBody('Testing Map Body Title'),
-    );
-  }
-}
-
-class MapScreen extends StatefulWidget {
-  @override
-  _MapScreenState createState() => _MapScreenState();
-}
-
-class _MapScreenState extends State<MapScreen> {
   static const _initialCameraPosition = CameraPosition(
     target: LatLng(8.484795864552531, 124.65660721180254),
     zoom: 21.0,
@@ -139,6 +123,54 @@ class _MapScreenState extends State<MapScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      body: SafeArea(
+        child: Column(children: [
+          Flexible(
+              flex: 3,
+              child: Container(
+                padding: EdgeInsets.only(bottom: 40.0),
+                decoration: BoxDecoration(
+                  color: Color.fromRGBO(25, 24, 81, 1),
+                  borderRadius:
+                      BorderRadius.vertical(bottom: Radius.circular(50)),
+                ),
+                child: Align(
+                  //optional
+                  alignment: Alignment.bottomCenter,
+                  child: Text('You Are Now Visiting USTP',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        fontFamily: 'Nunito',
+                      )),
+                ),
+              )),
+          Flexible(
+            flex: 11,
+            child: Center(
+              child: GoogleMap(
+                myLocationButtonEnabled: false,
+                zoomControlsEnabled: false,
+                initialCameraPosition: _initialCameraPosition,
+                onMapCreated: (controller) => _googleMapController = controller,
+              ),
+            ),
+          ),
+          Flexible(
+              flex: 2,
+              child: Center(
+                  child: Container(
+                color: Colors.green,
+              )))
+        ]),
+      ),
+    );
+  }
+
+  /*Widget build(BuildContext context) {
+    return Scaffold(
       body: GoogleMap(
         myLocationButtonEnabled: false,
         zoomControlsEnabled: false,
@@ -154,5 +186,5 @@ class _MapScreenState extends State<MapScreen> {
         child: const Icon(Icons.center_focus_strong),
       ),
     );
-  }
+  }*/
 }
