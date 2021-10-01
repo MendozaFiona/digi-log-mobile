@@ -21,13 +21,13 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
-  async: ^2.5.0
+  # async: ^2.5.0
   cached_network_image: ^3.1.0
   flutter:
     sdk: flutter
   
   dio: ^4.0.0
-  flutter_polyline_points: ^0.2.6
+  flutter_polyline_points: ^1.0.0
   google_maps_flutter: ^2.0.2
   location: ^4.3.0
   

@@ -14,7 +14,8 @@ void main() => runApp(MaterialApp(
         '/': (context) => SelectBranch(),
         '/visitUSTP': (context) => VisitUSTP(),
         '/inputName': (context) => InputName(),
-        '/mapNav': (context) => MapScreen(),
+        //'/mapNav': (context) => MapScreen(),
+        '/mapNav': (context) => MapNav(),
       },
       //home: VisitUSTP(),
       //home: InputName(),
@@ -109,7 +110,7 @@ class _MapScreenState extends State<MapScreen> {
 
   static const _initialCameraPosition = CameraPosition(
     target: LatLng(8.484795864552531, 124.65660721180254),
-    zoom: 21.0,
+    zoom: 13.0,
   );
 
   GoogleMapController _googleMapController;
@@ -187,4 +188,83 @@ class _MapScreenState extends State<MapScreen> {
       ),
     );
   }*/
+}
+
+class MapNav extends StatefulWidget {
+  @override
+  _MapNavState createState() => _MapNavState();
+}
+
+class _MapNavState extends State<MapNav> {
+  @override
+  void initState() {
+    permitLocation();
+    super.initState();
+  }
+
+  permitLocation() async {
+    Location location = new Location();
+
+    bool _serviceEnabled;
+    PermissionStatus _permissionGranted;
+    LocationData _locationData;
+
+    _serviceEnabled = await location.serviceEnabled();
+
+    if (!_serviceEnabled) {
+      _serviceEnabled = await location.requestService();
+      if (!_serviceEnabled) {
+        return Navigator.pop(context);
+      }
+    }
+
+    _permissionGranted = await location.hasPermission();
+
+    if (_permissionGranted == PermissionStatus.denied) {
+      _permissionGranted = await location.requestPermission();
+      if (_permissionGranted != PermissionStatus.granted) {
+        return;
+      }
+    }
+
+    /*ValueListenableBuilder<bool>(
+      valueListenable: ,
+      builder: ,
+    
+    );*/
+
+    _locationData = await location.getLocation();
+  }
+
+  static const _initialCameraPosition = CameraPosition(
+    target: LatLng(8.48, 124.65),
+    zoom: 13.0,
+  );
+
+  GoogleMapController _googleMapController;
+
+  @override
+  void dispose() {
+    _googleMapController.dispose();
+    super.dispose();
+  }
+
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: GoogleMap(
+        myLocationButtonEnabled: false,
+        zoomControlsEnabled: false,
+        initialCameraPosition: _initialCameraPosition,
+        onMapCreated: (controller) => _googleMapController = controller,
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Theme.of(context).primaryColor,
+        foregroundColor: Colors.black,
+        onPressed: () => _googleMapController.animateCamera(
+          CameraUpdate.newCameraPosition(_initialCameraPosition),
+        ),
+        child: const Icon(Icons.center_focus_strong),
+      ),
+    );
+  }
 }
