@@ -4,6 +4,7 @@ import 'package:location/location.dart';
 //import 'dart:async';
 //import 'package:flutter/services.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 
 void main() => runApp(MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -14,8 +15,8 @@ void main() => runApp(MaterialApp(
         '/': (context) => SelectBranch(),
         '/visitUSTP': (context) => VisitUSTP(),
         '/inputName': (context) => InputName(),
-        //'/mapNav': (context) => MapScreen(),
-        '/mapNav': (context) => MapNav(),
+        '/mapNav': (context) => MapScreen(),
+        //'/mapNav': (context) => MapNav(),
       },
       //home: VisitUSTP(),
       //home: InputName(),
@@ -34,7 +35,8 @@ class SelectBranch extends StatelessWidget {
 
 class VisitUSTP extends StatelessWidget {
   VisitUSTP({List<String> optionList})
-      : this.optionList = optionList ?? ['View Map'];
+      : this.optionList =
+            optionList ?? ['View Map', 'Show QR Code', 'Register QR Code'];
   final List<String> optionList;
 
   @override
@@ -95,7 +97,7 @@ class _MapScreenState extends State<MapScreen> {
     if (_permissionGranted == PermissionStatus.denied) {
       _permissionGranted = await location.requestPermission();
       if (_permissionGranted != PermissionStatus.granted) {
-        return;
+        return Navigator.pop(context);
       }
     }
 
@@ -110,10 +112,12 @@ class _MapScreenState extends State<MapScreen> {
 
   static const _initialCameraPosition = CameraPosition(
     target: LatLng(8.484795864552531, 124.65660721180254),
-    zoom: 13.0,
+    zoom: 21.0,
   );
 
   GoogleMapController _googleMapController;
+  Marker _origin; // 4now
+  Marker _destination; // 4now
 
   @override
   void dispose() {
@@ -123,11 +127,36 @@ class _MapScreenState extends State<MapScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final isPortrait =
+        MediaQuery.of(context).orientation == Orientation.portrait;
+    final defaultWidth = MediaQuery.of(context).size.width;
+    final defaultHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       body: SafeArea(
-        child: Column(children: [
-          Flexible(
-              flex: 3,
+        child: Stack(children: [
+          Center(
+            child: Stack(children: [
+              GoogleMap(
+                myLocationButtonEnabled: false,
+                zoomControlsEnabled: false,
+                initialCameraPosition: _initialCameraPosition,
+                onMapCreated: (controller) => _googleMapController = controller,
+                // 4now
+                markers: {
+                  if (_origin != null) _origin,
+                  if (_destination != null) _destination
+                },
+                // 4now
+              ),
+              Positioned(
+                  top: defaultHeight / 10 + 5, child: mapSearchBar(isPortrait))
+            ]),
+          ),
+          Positioned(
+              top: 0,
+              height: defaultHeight / 10,
+              width: defaultWidth,
               child: Container(
                 padding: EdgeInsets.only(bottom: 40.0),
                 decoration: BoxDecoration(
@@ -135,135 +164,24 @@ class _MapScreenState extends State<MapScreen> {
                   borderRadius:
                       BorderRadius.vertical(bottom: Radius.circular(50)),
                 ),
-                child: Align(
-                  //optional
-                  alignment: Alignment.bottomCenter,
-                  child: Text('You Are Now Visiting USTP',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                        fontFamily: 'Nunito',
-                      )),
+              )),
+          Positioned(
+              bottom: 0,
+              height: defaultHeight / 10,
+              width: defaultWidth,
+              child: Container(
+                padding: EdgeInsets.only(bottom: 40.0),
+                decoration: BoxDecoration(
+                  color: Color.fromRGBO(25, 24, 81, 1),
+                  borderRadius: BorderRadius.vertical(top: Radius.circular(50)),
                 ),
               )),
-          Flexible(
-            flex: 11,
-            child: Center(
-              child: GoogleMap(
-                myLocationButtonEnabled: false,
-                zoomControlsEnabled: false,
-                initialCameraPosition: _initialCameraPosition,
-                onMapCreated: (controller) => _googleMapController = controller,
-              ),
-            ),
-          ),
-          Flexible(
-              flex: 2,
-              child: Center(
-                  child: Container(
-                color: Colors.green,
-              )))
+          /*Positioned(
+            top: 80,
+            width: defaultWidth,
+            child: mapSearchBar(isPortrait),
+          ),*/
         ]),
-      ),
-    );
-  }
-
-  /*Widget build(BuildContext context) {
-    return Scaffold(
-      body: GoogleMap(
-        myLocationButtonEnabled: false,
-        zoomControlsEnabled: false,
-        initialCameraPosition: _initialCameraPosition,
-        onMapCreated: (controller) => _googleMapController = controller,
-      ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Theme.of(context).primaryColor,
-        foregroundColor: Colors.black,
-        onPressed: () => _googleMapController.animateCamera(
-          CameraUpdate.newCameraPosition(_initialCameraPosition),
-        ),
-        child: const Icon(Icons.center_focus_strong),
-      ),
-    );
-  }*/
-}
-
-class MapNav extends StatefulWidget {
-  @override
-  _MapNavState createState() => _MapNavState();
-}
-
-class _MapNavState extends State<MapNav> {
-  @override
-  void initState() {
-    permitLocation();
-    super.initState();
-  }
-
-  permitLocation() async {
-    Location location = new Location();
-
-    bool _serviceEnabled;
-    PermissionStatus _permissionGranted;
-    LocationData _locationData;
-
-    _serviceEnabled = await location.serviceEnabled();
-
-    if (!_serviceEnabled) {
-      _serviceEnabled = await location.requestService();
-      if (!_serviceEnabled) {
-        return Navigator.pop(context);
-      }
-    }
-
-    _permissionGranted = await location.hasPermission();
-
-    if (_permissionGranted == PermissionStatus.denied) {
-      _permissionGranted = await location.requestPermission();
-      if (_permissionGranted != PermissionStatus.granted) {
-        return;
-      }
-    }
-
-    /*ValueListenableBuilder<bool>(
-      valueListenable: ,
-      builder: ,
-    
-    );*/
-
-    _locationData = await location.getLocation();
-  }
-
-  static const _initialCameraPosition = CameraPosition(
-    target: LatLng(8.48, 124.65),
-    zoom: 13.0,
-  );
-
-  GoogleMapController _googleMapController;
-
-  @override
-  void dispose() {
-    _googleMapController.dispose();
-    super.dispose();
-  }
-
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: GoogleMap(
-        myLocationButtonEnabled: false,
-        zoomControlsEnabled: false,
-        initialCameraPosition: _initialCameraPosition,
-        onMapCreated: (controller) => _googleMapController = controller,
-      ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Theme.of(context).primaryColor,
-        foregroundColor: Colors.black,
-        onPressed: () => _googleMapController.animateCamera(
-          CameraUpdate.newCameraPosition(_initialCameraPosition),
-        ),
-        child: const Icon(Icons.center_focus_strong),
       ),
     );
   }

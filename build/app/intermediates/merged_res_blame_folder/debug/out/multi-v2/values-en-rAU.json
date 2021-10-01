@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\000 Sisi\\Capstone\\digi_log\\digiLogMobileGoogle\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-en-rAU\\values-en-rAU.xml",
+            "outputFile": "D:\\000 SISI\\digiLogMobile\\digiLogMobileGoogle\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-en-rAU\\values-en-rAU.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Mendoza\\.gradle\\caches\\transforms-2\\files-2.1\\22596e141ed939448a45bb52248db646\\core-1.3.2\\res\\values-en-rAU\\values-en-rAU.xml",
+                    "source": "C:\\Users\\acer\\.gradle\\caches\\transforms-2\\files-2.1\\22596e141ed939448a45bb52248db646\\core-1.3.2\\res\\values-en-rAU\\values-en-rAU.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

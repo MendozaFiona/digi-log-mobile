@@ -1,4 +1,63 @@
 /*
+
+# backup
+
+Column(children: [
+  Flexible(
+      flex: 2,
+      child: Container(
+        padding: EdgeInsets.only(bottom: 40.0),
+        decoration: BoxDecoration(
+          color: Color.fromRGBO(25, 24, 81, 1),
+          borderRadius:
+              BorderRadius.vertical(bottom: Radius.circular(50)),
+        ),
+        /*child: Align(
+          //optional
+          alignment: Alignment.bottomCenter,
+          child: Text('You Are Now Visiting USTP',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+                fontFamily: 'Nunito',
+              )),
+        ),*/
+      )),
+  Flexible(
+    flex: 20,
+    child: Stack(children: [
+      Center(
+        child: GoogleMap(
+          myLocationButtonEnabled: false,
+          zoomControlsEnabled: false,
+          initialCameraPosition: _initialCameraPosition,
+          onMapCreated: (controller) =>
+              _googleMapController = controller,
+          // 4now
+          markers: {
+            if (_origin != null) _origin,
+            if (_destination != null) _destination
+          },
+          // 4now
+        ),
+      ),
+      mapSearchBar(isPortrait),
+    ]),
+  ),
+  Flexible(
+      flex: 3,
+      child: Center(
+          child: Container(
+        padding: EdgeInsets.only(bottom: 40.0),
+        decoration: BoxDecoration(
+          color: Color.fromRGBO(25, 24, 81, 1),
+          borderRadius: BorderRadius.vertical(top: Radius.circular(50)),
+        ),
+      )))
+]),
+
 # FOR IMAGES:
 # make sure to put in pubspec.yaml
 # in the body: Center: child
