@@ -149,38 +149,25 @@ class _MapScreenState extends State<MapScreen> {
                 },
                 // 4now
               ),
-              Positioned(
-                  top: defaultHeight / 10 + 5, child: mapSearchBar(isPortrait))
             ]),
           ),
           Positioned(
-              top: 0,
-              height: defaultHeight / 10,
+              top: 10,
+              height: defaultHeight,
               width: defaultWidth,
-              child: Container(
-                padding: EdgeInsets.only(bottom: 40.0),
-                decoration: BoxDecoration(
-                  color: Color.fromRGBO(25, 24, 81, 1),
-                  borderRadius:
-                      BorderRadius.vertical(bottom: Radius.circular(50)),
-                ),
-              )),
+              child: mapSearchBar(isPortrait)),
           Positioned(
               bottom: 0,
-              height: defaultHeight / 10,
+              height: defaultHeight / 8,
               width: defaultWidth,
               child: Container(
-                padding: EdgeInsets.only(bottom: 40.0),
+                padding: EdgeInsets.fromLTRB(60, 30, 60, 40),
                 decoration: BoxDecoration(
                   color: Color.fromRGBO(25, 24, 81, 1),
                   borderRadius: BorderRadius.vertical(top: Radius.circular(50)),
                 ),
+                child: optionsDark(context, 'Show QR Code'),
               )),
-          /*Positioned(
-            top: 80,
-            width: defaultWidth,
-            child: mapSearchBar(isPortrait),
-          ),*/
         ]),
       ),
     );

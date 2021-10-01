@@ -167,6 +167,33 @@ ElevatedButton optionsLight(context, _optionText) {
   );
 }
 
+ElevatedButton optionsDark(context, _optionText) {
+  return ElevatedButton(
+    onPressed: () {
+      if (_optionText == 'Cagayan de Oro') {
+        Navigator.pushNamed(context, '/visitUSTP');
+      } else if (_optionText == 'View Map') {
+        Navigator.pushNamed(context, '/inputName');
+      } else if (_optionText == 'Submit') {
+        Navigator.pushNamed(context, '/mapNav');
+      }
+    },
+    child: Text(_optionText,
+        style: TextStyle(
+          fontSize: 18,
+          color: Colors.black,
+          fontFamily: 'Roboto',
+        )),
+    style: ElevatedButton.styleFrom(
+      primary: Color.fromRGBO(253, 180, 23, 1),
+      side: BorderSide(color: Colors.black),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(40.0),
+      ),
+    ),
+  );
+}
+
 FloatingSearchBar mapSearchBar(isPortrait) {
   return FloatingSearchBar(
     hint: 'Search...',
