@@ -1,4 +1,6 @@
+import 'package:digi_logbook/directions_repository.dart';
 import 'package:flutter/material.dart';
+import 'directions_model.dart';
 import 'essentials.dart';
 import 'package:location/location.dart';
 //import 'dart:async';
@@ -117,6 +119,7 @@ class _MapScreenState extends State<MapScreen> {
   GoogleMapController _googleMapController;
   Marker _origin; // 4now
   Marker _destination; // 4now
+  Directions _info;
 
   @override
   void dispose() {
@@ -193,7 +196,7 @@ class _MapScreenState extends State<MapScreen> {
   }
 
   //4now
-  void _addMarker(LatLng pos) {
+  void _addMarker(LatLng pos) async {
     if (_origin == null || (_origin != null && _destination != null)) {
       setState(() {
         _origin = Marker(
@@ -205,6 +208,7 @@ class _MapScreenState extends State<MapScreen> {
         );
         // Reset destination
         _destination = null;
+        _info = null; // 4now
       });
     } else {
       setState(() {
@@ -216,6 +220,11 @@ class _MapScreenState extends State<MapScreen> {
         );
         // Reset destination
       });
+
+      // Get directions
+      final directions = await DirectionsRepository()
+          .getDirections(origin: _origin.position, destination: pos);
+      setState(() => _info = directions);
     }
   }
   //4now
