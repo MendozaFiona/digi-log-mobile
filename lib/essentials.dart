@@ -1,5 +1,8 @@
+import 'dart:ffi';
+
 import 'package:digi_logbook/main.dart';
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 
 SafeArea mapBody(_title) {
@@ -136,6 +139,37 @@ Column fillupForm(context, _formTitle) {
       SizedBox(height: 15),
       optionsLight(context, 'Submit')
     ],
+  );
+}
+
+TextButton txtButtonDefault(cntrlr, pos, title) {
+  bool _isBtnEnabled = false;
+
+  if (pos != null) {
+    _isBtnEnabled = true;
+  }
+
+  return TextButton(
+    onPressed: _isBtnEnabled
+        ? () => cntrlr.animateCamera(
+              CameraUpdate.newCameraPosition(
+                CameraPosition(
+                  target: pos.position,
+                  zoom: 21.0,
+                  tilt: 50.0,
+                ),
+              ),
+            )
+        : null,
+    style: TextButton.styleFrom(
+      primary: Colors.white,
+      textStyle: TextStyle(
+        letterSpacing: 3.0,
+        fontWeight: FontWeight.w600,
+        fontSize: 18,
+      ),
+    ),
+    child: Text(title),
   );
 }
 

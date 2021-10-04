@@ -4,7 +4,6 @@ import 'package:location/location.dart';
 //import 'dart:async';
 //import 'package:flutter/services.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 
 void main() => runApp(MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -133,6 +132,12 @@ class _MapScreenState extends State<MapScreen> {
     final defaultHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color.fromRGBO(25, 24, 81, 1),
+        centerTitle: true, // positioning of title
+        automaticallyImplyLeading: false, // removves back button
+        title: Text('Google Maps'),
+      ),
       body: SafeArea(
         child: Stack(children: [
           Center(
@@ -147,6 +152,7 @@ class _MapScreenState extends State<MapScreen> {
                   if (_origin != null) _origin,
                   if (_destination != null) _destination
                 },
+                onLongPress: _addMarker,
                 // 4now
               ),
             ]),
@@ -158,18 +164,59 @@ class _MapScreenState extends State<MapScreen> {
               child: mapSearchBar(isPortrait)),
           Positioned(
               bottom: 0,
-              height: defaultHeight / 8,
+              height: defaultHeight / 6,
               width: defaultWidth,
               child: Container(
-                padding: EdgeInsets.fromLTRB(60, 30, 60, 40),
+                padding: EdgeInsets.fromLTRB(60, 0, 60, 10),
                 decoration: BoxDecoration(
                   color: Color.fromRGBO(25, 24, 81, 1),
                   borderRadius: BorderRadius.vertical(top: Radius.circular(50)),
                 ),
-                child: optionsDark(context, 'Show QR Code'),
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          txtButtonDefault(
+                              _googleMapController, _origin, 'ORIGIN'),
+                          txtButtonDefault(
+                              _googleMapController, _destination, 'DEST.'),
+                        ],
+                      ),
+                      optionsDark(context, 'Show QR Code')
+                    ]),
               )),
         ]),
       ),
     );
   }
+
+  //4now
+  void _addMarker(LatLng pos) {
+    if (_origin == null || (_origin != null && _destination != null)) {
+      setState(() {
+        _origin = Marker(
+          markerId: MarkerId('origin'),
+          infoWindow: InfoWindow(title: 'Origin'),
+          icon:
+              BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueGreen),
+          position: pos,
+        );
+        // Reset destination
+        _destination = null;
+      });
+    } else {
+      setState(() {
+        _destination = Marker(
+          markerId: MarkerId('destination'),
+          infoWindow: InfoWindow(title: 'Destination'),
+          icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
+          position: pos,
+        );
+        // Reset destination
+      });
+    }
+  }
+  //4now
 }
