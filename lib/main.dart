@@ -144,7 +144,7 @@ class _MapScreenState extends State<MapScreen> {
       body: SafeArea(
         child: Stack(children: [
           Center(
-            child: Stack(children: [
+            child: Stack(alignment: Alignment.center, children: [
               GoogleMap(
                 myLocationButtonEnabled: false,
                 zoomControlsEnabled: false,
@@ -158,6 +158,11 @@ class _MapScreenState extends State<MapScreen> {
                 onLongPress: _addMarker,
                 // 4now
               ),
+              if (_info != null)
+                Positioned(
+                  bottom: defaultHeight / 6 + 10.0,
+                  child: navDetails(_info, defaultWidth),
+                ),
             ]),
           ),
           Positioned(

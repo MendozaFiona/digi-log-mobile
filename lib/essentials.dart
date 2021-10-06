@@ -228,6 +228,26 @@ ElevatedButton optionsDark(context, _optionText) {
   );
 }
 
+Container navDetails(_info, defaultWidth) {
+  return Container(
+    padding: EdgeInsets.symmetric(vertical: 6.0, horizontal: 12.0),
+    width: defaultWidth / 1.5,
+    decoration: BoxDecoration(
+      color: Colors.grey[300],
+      borderRadius: BorderRadius.circular(20.0),
+      border: Border.all(color: Colors.grey),
+    ),
+    child: Text(
+      'Destination: Sample Destination\nDistance: ${_info.totalDistance}, ${_info.totalDuration}',
+      textAlign: TextAlign.center,
+      style: TextStyle(
+        fontSize: 14.0,
+        fontWeight: FontWeight.w600,
+      ),
+    ),
+  );
+}
+
 FloatingSearchBar mapSearchBar(isPortrait) {
   return FloatingSearchBar(
     hint: 'Search...',
