@@ -155,6 +155,17 @@ class _MapScreenState extends State<MapScreen> {
                   if (_origin != null) _origin,
                   if (_destination != null) _destination
                 },
+                polylines: {
+                  if (_info != null)
+                  Polyline(
+                    polylineId: PolylineId('overview_polyline'),
+                    color: Colors.red,
+                    width: 5,
+                    points:  _info.polylinePoints.
+                          map((e) => LatLng(e.latitude, e.longitude))
+                          .toList(),
+                  )
+                },
                 onLongPress: _addMarker,
                 // 4now
               ),
