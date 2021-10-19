@@ -1,11 +1,16 @@
-import 'package:digi_logbook/directions_repository.dart';
-import 'package:flutter/material.dart';
+import 'dart:async';
+
 import 'directions_model.dart';
 import 'essentials.dart';
+
+import 'package:digi_logbook/directions_repository.dart';
 import 'package:location/location.dart';
-//import 'dart:async';
-//import 'package:flutter/services.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter/foundation.dart';
 
 void main() => runApp(MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -73,8 +78,12 @@ class MapScreen extends StatefulWidget {
 class _MapScreenState extends State<MapScreen> {
   @override
   void initState() {
+    initConnectivity();
     permitLocation();
     super.initState();
+
+    _connectivitySubscription =
+        _connectivity.onConnectivityChanged.listen(_updateConnectionStatus);
   }
 
   permitLocation() async {
@@ -102,13 +111,76 @@ class _MapScreenState extends State<MapScreen> {
       }
     }
 
-    /*ValueListenableBuilder<bool>(
-      valueListenable: ,
-      builder: ,
-    
-    );*/
-
     _locationData = await location.getLocation();
+  }
+
+  ConnectivityResult _connectionStatus = ConnectivityResult.none;
+  final Connectivity _connectivity = Connectivity();
+  //removed late type
+  StreamSubscription<ConnectivityResult> _connectivitySubscription;
+  bool _isConnected;
+
+  initConnectivity() async {
+    //removed late type
+    ConnectivityResult result;
+
+    print("passes initConnectivity");
+
+    try {
+      var connectivityResult = await (Connectivity().checkConnectivity());
+
+      if (connectivityResult == ConnectivityResult.mobile ||
+          connectivityResult == ConnectivityResult.wifi) {
+        print('connected');
+        _isConnected = true;
+      } else {
+        _isConnected = false;
+        print('not connected');
+
+        Widget okButton = TextButton(
+          child: Text("OK"),
+          onPressed: () {
+            Navigator.pop(context);
+            Navigator.pop(context);
+          },
+        );
+
+        WillPopScope alert = WillPopScope(
+            onWillPop: () async {
+              return false;
+            },
+            child: AlertDialog(
+              title: Text("Internet Connection Required"),
+              content: Text(
+                  "The routing feature requires Internet connection to function properly. Please turn on your Internet."),
+              actions: [
+                okButton,
+              ],
+            ));
+
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return alert;
+          },
+        );
+      }
+    } on PlatformException catch (e) {
+      print(e.toString());
+      return;
+    }
+
+    if (!mounted) {
+      return Future.value(null);
+    }
+
+    return _updateConnectionStatus(result);
+  }
+
+  Future<void> _updateConnectionStatus(ConnectivityResult result) async {
+    setState(() {
+      _connectionStatus = result;
+    });
   }
 
   static const _initialCameraPosition = CameraPosition(
@@ -124,6 +196,7 @@ class _MapScreenState extends State<MapScreen> {
   @override
   void dispose() {
     _googleMapController.dispose();
+    _connectivitySubscription.cancel();
     super.dispose();
   }
 
@@ -157,14 +230,14 @@ class _MapScreenState extends State<MapScreen> {
                 },
                 polylines: {
                   if (_info != null)
-                  Polyline(
-                    polylineId: PolylineId('overview_polyline'),
-                    color: Colors.red,
-                    width: 5,
-                    points:  _info.polylinePoints.
-                          map((e) => LatLng(e.latitude, e.longitude))
+                    Polyline(
+                      polylineId: PolylineId('overview_polyline'),
+                      color: Colors.red,
+                      width: 5,
+                      points: _info.polylinePoints
+                          .map((e) => LatLng(e.latitude, e.longitude))
                           .toList(),
-                  )
+                    )
                 },
                 onLongPress: _addMarker,
                 // 4now
