@@ -10,7 +10,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/foundation.dart';
+//import 'package:flutter/foundation.dart';
 
 void main() => runApp(MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -20,13 +20,8 @@ void main() => runApp(MaterialApp(
       routes: {
         '/': (context) => SelectBranch(),
         '/visitUSTP': (context) => VisitUSTP(),
-        '/inputName': (context) => InputName(),
         '/mapNav': (context) => MapScreen(),
-        //'/mapNav': (context) => MapNav(),
       },
-      //home: VisitUSTP(),
-      //home: InputName(),
-      //home: MapNav(),
     ));
 
 //maybe move this to pages folder under visitor
@@ -49,23 +44,6 @@ class VisitUSTP extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: bodyFormat(context, 'Visit USTP CDO', optionList, 'optSect'),
-    );
-  }
-}
-
-class InputName extends StatefulWidget {
-  //const InputName({ Key? key }) : super(key: key);
-
-  @override
-  _InputNameState createState() => _InputNameState();
-}
-
-class _InputNameState extends State<InputName> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: bodyFormat(
-          context, 'Visit USTP CDO', 'Please Input Your Name', 'fillForm'),
     );
   }
 }
@@ -118,7 +96,41 @@ class _MapScreenState extends State<MapScreen> {
   final Connectivity _connectivity = Connectivity();
   //removed late type
   StreamSubscription<ConnectivityResult> _connectivitySubscription;
-  bool _isConnected;
+  //bool _isConnected;
+
+  popMapNav() {
+    Navigator.pop(context);
+  }
+
+  internetChangePrompt() {
+    Widget okButton = TextButton(
+      child: Text("OK"),
+      onPressed: () {
+        Navigator.pop(context); // should be dynamic according to branch
+        popMapNav();
+      },
+    );
+
+    WillPopScope alert = WillPopScope(
+        onWillPop: () async {
+          return false;
+        },
+        child: AlertDialog(
+          title: Text("Internet Connection Required"),
+          content: Text(
+              "The routing feature requires Internet connection to function properly. Please turn on your Internet."),
+          actions: [
+            okButton,
+          ],
+        ));
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
 
   initConnectivity() async {
     //removed late type
@@ -131,39 +143,10 @@ class _MapScreenState extends State<MapScreen> {
 
       if (connectivityResult == ConnectivityResult.mobile ||
           connectivityResult == ConnectivityResult.wifi) {
-        print('connected');
-        _isConnected = true;
+        //_isConnected = true;
       } else {
-        _isConnected = false;
-        print('not connected');
-
-        Widget okButton = TextButton(
-          child: Text("OK"),
-          onPressed: () {
-            Navigator.pop(context);
-            Navigator.pop(context);
-          },
-        );
-
-        WillPopScope alert = WillPopScope(
-            onWillPop: () async {
-              return false;
-            },
-            child: AlertDialog(
-              title: Text("Internet Connection Required"),
-              content: Text(
-                  "The routing feature requires Internet connection to function properly. Please turn on your Internet."),
-              actions: [
-                okButton,
-              ],
-            ));
-
-        showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return alert;
-          },
-        );
+        //_isConnected = false;
+        internetChangePrompt();
       }
     } on PlatformException catch (e) {
       print(e.toString());
@@ -180,6 +163,9 @@ class _MapScreenState extends State<MapScreen> {
   Future<void> _updateConnectionStatus(ConnectivityResult result) async {
     setState(() {
       _connectionStatus = result;
+      if (_connectionStatus == ConnectivityResult.none) {
+        internetChangePrompt();
+      }
     });
   }
 

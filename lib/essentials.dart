@@ -179,8 +179,6 @@ ElevatedButton optionsLight(context, _optionText) {
       if (_optionText == 'Cagayan de Oro') {
         Navigator.pushNamed(context, '/visitUSTP');
       } else if (_optionText == 'View Map') {
-        Navigator.pushNamed(context, '/inputName');
-      } else if (_optionText == 'Submit') {
         Navigator.pushNamed(context, '/mapNav');
       }
     },
@@ -203,15 +201,7 @@ ElevatedButton optionsLight(context, _optionText) {
 
 ElevatedButton optionsDark(context, _optionText) {
   return ElevatedButton(
-    onPressed: () {
-      if (_optionText == 'Cagayan de Oro') {
-        Navigator.pushNamed(context, '/visitUSTP');
-      } else if (_optionText == 'View Map') {
-        Navigator.pushNamed(context, '/inputName');
-      } else if (_optionText == 'Submit') {
-        Navigator.pushNamed(context, '/mapNav');
-      }
-    },
+    onPressed: () {},
     child: Text(_optionText,
         style: TextStyle(
           fontSize: 18,
