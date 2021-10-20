@@ -1,6 +1,3 @@
-import 'dart:ffi';
-
-import 'package:digi_logbook/main.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
@@ -46,7 +43,7 @@ SafeArea mapBody(_title) {
   );
 }
 
-SafeArea bodyFormat(context, _title, _textList, _functOption) {
+SafeArea bodyFormat(context, _title, _optionList, _functOption) {
   // i think dapat i array ning optionText
   return SafeArea(
     child: Column(children: [
@@ -87,11 +84,7 @@ SafeArea bodyFormat(context, _title, _textList, _functOption) {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      //Spacer()
-                      if (_functOption == 'optSect')
-                        optionSection(context, _textList),
-                      if (_functOption == 'fillForm')
-                        fillupForm(context, _textList)
+                      optionSection(context, _optionList),
                     ],
                   ))))
     ]),
@@ -102,44 +95,6 @@ Column optionSection(context, _optionList) {
   return Column(children: [
     for (var options in _optionList) optionsLight(context, options.toString()),
   ]);
-}
-
-Column fillupForm(context, _formTitle) {
-  return Column(
-    children: [
-      Text(_formTitle,
-          style: TextStyle(
-            fontSize: 23,
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-            fontFamily: 'Roboto',
-          )),
-      SizedBox(height: 15),
-      Container(
-        height: 40,
-        width: 250,
-        child: TextFormField(
-          style: TextStyle(
-            fontSize: 20.0,
-          ),
-          decoration: InputDecoration(
-            filled: true,
-            fillColor: Colors.white,
-            border:
-                OutlineInputBorder(borderRadius: BorderRadius.circular(10.0)),
-            focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(
-                  color: Color.fromRGBO(25, 24, 81, 1),
-                ),
-                borderRadius: BorderRadius.circular(10.0)),
-            contentPadding: EdgeInsets.symmetric(horizontal: 2, vertical: 3),
-          ),
-        ),
-      ),
-      SizedBox(height: 15),
-      optionsLight(context, 'Submit')
-    ],
-  );
 }
 
 TextButton txtButtonDefault(cntrlr, pos, title) {
@@ -180,6 +135,8 @@ ElevatedButton optionsLight(context, _optionText) {
         Navigator.pushNamed(context, '/visitUSTP');
       } else if (_optionText == 'View Map') {
         Navigator.pushNamed(context, '/mapNav');
+      } else if(_optionText == 'Register QR Code') {
+        //pickImage();
       }
     },
     child: Text(_optionText,

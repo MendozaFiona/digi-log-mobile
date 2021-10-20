@@ -32,6 +32,7 @@ dependencies:
   location: ^4.3.0
   material_floating_search_bar: ^0.3.4
   connectivity_plus: ^2.0.2
+  image_picker: ^0.8.4+3
   
 
 

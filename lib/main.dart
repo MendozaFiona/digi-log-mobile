@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:image_picker/image_picker.dart';
+
 import 'directions_model.dart';
 import 'essentials.dart';
 
@@ -40,6 +42,12 @@ class VisitUSTP extends StatelessWidget {
             optionList ?? ['View Map', 'Show QR Code', 'Register QR Code'];
   final List<String> optionList;
 
+  Future pickImage() async {
+    await ImagePicker().pickImage(
+      
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,6 +55,22 @@ class VisitUSTP extends StatelessWidget {
     );
   }
 }
+
+/*class RegisterCode extends StatefulWidget {
+  //const RegisterCode({ Key? key }) : super(key: key);
+
+  @override
+  _RegisterCodeState createState() => _RegisterCodeState();
+}
+
+class _RegisterCodeState extends State<RegisterCode> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      
+    );
+  }
+}*/
 
 class MapScreen extends StatefulWidget {
   @override
@@ -94,9 +118,8 @@ class _MapScreenState extends State<MapScreen> {
 
   ConnectivityResult _connectionStatus = ConnectivityResult.none;
   final Connectivity _connectivity = Connectivity();
-  //removed late type
+
   StreamSubscription<ConnectivityResult> _connectivitySubscription;
-  //bool _isConnected;
 
   popMapNav() {
     Navigator.pop(context);
@@ -106,7 +129,7 @@ class _MapScreenState extends State<MapScreen> {
     Widget okButton = TextButton(
       child: Text("OK"),
       onPressed: () {
-        Navigator.pop(context); // should be dynamic according to branch
+        Navigator.pop(context);
         popMapNav();
       },
     );
@@ -133,7 +156,6 @@ class _MapScreenState extends State<MapScreen> {
   }
 
   initConnectivity() async {
-    //removed late type
     ConnectivityResult result;
 
     print("passes initConnectivity");
@@ -143,9 +165,7 @@ class _MapScreenState extends State<MapScreen> {
 
       if (connectivityResult == ConnectivityResult.mobile ||
           connectivityResult == ConnectivityResult.wifi) {
-        //_isConnected = true;
       } else {
-        //_isConnected = false;
         internetChangePrompt();
       }
     } on PlatformException catch (e) {
@@ -197,7 +217,7 @@ class _MapScreenState extends State<MapScreen> {
       appBar: AppBar(
         backgroundColor: Color.fromRGBO(25, 24, 81, 1),
         centerTitle: true, // positioning of title
-        automaticallyImplyLeading: false, // removves back button
+        automaticallyImplyLeading: false, // removes back button
         title: Text('Google Maps'),
       ),
       body: SafeArea(
@@ -293,7 +313,6 @@ class _MapScreenState extends State<MapScreen> {
           icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
           position: pos,
         );
-        // Reset destination
       });
 
       // Get directions
