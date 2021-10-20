@@ -1,6 +1,5 @@
 import 'dart:async';
-
-import 'package:image_picker/image_picker.dart';
+import 'dart:html';
 
 import 'directions_model.dart';
 import 'essentials.dart';
@@ -9,9 +8,11 @@ import 'package:digi_logbook/directions_repository.dart';
 import 'package:location/location.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:image_picker/image_picker.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'dart:io' as io;
 //import 'package:flutter/foundation.dart';
 
 void main() => runApp(MaterialApp(
@@ -37,16 +38,12 @@ class SelectBranch extends StatelessWidget {
 }
 
 class VisitUSTP extends StatelessWidget {
+  //const VisitUSTP({ Key? key }) : super(key: key);
+
   VisitUSTP({List<String> optionList})
       : this.optionList =
             optionList ?? ['View Map', 'Show QR Code', 'Register QR Code'];
   final List<String> optionList;
-
-  Future pickImage() async {
-    await ImagePicker().pickImage(
-      
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +53,7 @@ class VisitUSTP extends StatelessWidget {
   }
 }
 
-/*class RegisterCode extends StatefulWidget {
+class RegisterCode extends StatefulWidget {
   //const RegisterCode({ Key? key }) : super(key: key);
 
   @override
@@ -64,13 +61,22 @@ class VisitUSTP extends StatelessWidget {
 }
 
 class _RegisterCodeState extends State<RegisterCode> {
+  io.File imageCode;
+
+  Future pickImage() async {
+    final imageCode =
+        await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (imageCode == null) return;
+
+    final imageTemporary = io.File(imageCode.path);
+    this.imageCode = imageTemporary;
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      
-    );
+    return Container();
   }
-}*/
+}
 
 class MapScreen extends StatefulWidget {
   @override
