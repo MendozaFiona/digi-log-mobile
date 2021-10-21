@@ -126,30 +126,48 @@
 80-->[:location] D:\000 SISI\digiLogMobile\digiLogMobileGoogle\build\location\intermediates\library_manifest\debug\AndroidManifest.xml:13:13-35
 81            android:exported="false"
 81-->[:location] D:\000 SISI\digiLogMobile\digiLogMobileGoogle\build\location\intermediates\library_manifest\debug\AndroidManifest.xml:14:13-37
-82            android:foregroundServiceType="location" /> <!-- Needs to be explicitly declared on P+ -->
+82            android:foregroundServiceType="location" />
 82-->[:location] D:\000 SISI\digiLogMobile\digiLogMobileGoogle\build\location\intermediates\library_manifest\debug\AndroidManifest.xml:15:13-53
-83        <uses-library
-83-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\acer\.gradle\caches\transforms-2\files-2.1\c5de8972dacd649c27c247c9e16de3ac\jetified-play-services-maps-17.0.0\AndroidManifest.xml:33:9-35:40
-84            android:name="org.apache.http.legacy"
-84-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\acer\.gradle\caches\transforms-2\files-2.1\c5de8972dacd649c27c247c9e16de3ac\jetified-play-services-maps-17.0.0\AndroidManifest.xml:34:13-50
-85            android:required="false" />
-85-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\acer\.gradle\caches\transforms-2\files-2.1\c5de8972dacd649c27c247c9e16de3ac\jetified-play-services-maps-17.0.0\AndroidManifest.xml:35:13-37
-86
-87        <activity
-87-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\acer\.gradle\caches\transforms-2\files-2.1\7c879cb157fab2c9a5d74c3d70fd64e3\jetified-play-services-base-17.0.0\AndroidManifest.xml:23:9-26:75
-88            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-88-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\acer\.gradle\caches\transforms-2\files-2.1\7c879cb157fab2c9a5d74c3d70fd64e3\jetified-play-services-base-17.0.0\AndroidManifest.xml:24:13-79
-89            android:exported="false"
-89-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\acer\.gradle\caches\transforms-2\files-2.1\7c879cb157fab2c9a5d74c3d70fd64e3\jetified-play-services-base-17.0.0\AndroidManifest.xml:25:13-37
-90            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-90-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\acer\.gradle\caches\transforms-2\files-2.1\7c879cb157fab2c9a5d74c3d70fd64e3\jetified-play-services-base-17.0.0\AndroidManifest.xml:26:13-72
-91
-92        <meta-data
-92-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\acer\.gradle\caches\transforms-2\files-2.1\3c8e7eb3d21ac94d08f658f6d8a1c9f3\jetified-play-services-basement-17.0.0\AndroidManifest.xml:23:9-25:69
-93            android:name="com.google.android.gms.version"
-93-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\acer\.gradle\caches\transforms-2\files-2.1\3c8e7eb3d21ac94d08f658f6d8a1c9f3\jetified-play-services-basement-17.0.0\AndroidManifest.xml:24:13-58
-94            android:value="@integer/google_play_services_version" />
-94-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\acer\.gradle\caches\transforms-2\files-2.1\3c8e7eb3d21ac94d08f658f6d8a1c9f3\jetified-play-services-basement-17.0.0\AndroidManifest.xml:25:13-66
-95    </application>
+83
+84        <provider
+84-->[:image_picker] D:\000 SISI\digiLogMobile\digiLogMobileGoogle\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-16:20
+85            android:name="io.flutter.plugins.imagepicker.ImagePickerFileProvider"
+85-->[:image_picker] D:\000 SISI\digiLogMobile\digiLogMobileGoogle\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-82
+86            android:authorities="com.example.digi_logbook.flutter.image_provider"
+86-->[:image_picker] D:\000 SISI\digiLogMobile\digiLogMobileGoogle\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:10:13-74
+87            android:exported="false"
+87-->[:image_picker] D:\000 SISI\digiLogMobile\digiLogMobileGoogle\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:11:13-37
+88            android:grantUriPermissions="true" >
+88-->[:image_picker] D:\000 SISI\digiLogMobile\digiLogMobileGoogle\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:12:13-47
+89            <meta-data
+89-->[:image_picker] D:\000 SISI\digiLogMobile\digiLogMobileGoogle\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:13:13-15:75
+90                android:name="android.support.FILE_PROVIDER_PATHS"
+90-->[:image_picker] D:\000 SISI\digiLogMobile\digiLogMobileGoogle\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:14:17-67
+91                android:resource="@xml/flutter_image_picker_file_paths" />
+91-->[:image_picker] D:\000 SISI\digiLogMobile\digiLogMobileGoogle\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:15:17-72
+92        </provider> <!-- Needs to be explicitly declared on P+ -->
+93        <uses-library
+93-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\acer\.gradle\caches\transforms-2\files-2.1\c5de8972dacd649c27c247c9e16de3ac\jetified-play-services-maps-17.0.0\AndroidManifest.xml:33:9-35:40
+94            android:name="org.apache.http.legacy"
+94-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\acer\.gradle\caches\transforms-2\files-2.1\c5de8972dacd649c27c247c9e16de3ac\jetified-play-services-maps-17.0.0\AndroidManifest.xml:34:13-50
+95            android:required="false" />
+95-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\acer\.gradle\caches\transforms-2\files-2.1\c5de8972dacd649c27c247c9e16de3ac\jetified-play-services-maps-17.0.0\AndroidManifest.xml:35:13-37
 96
-97</manifest>
+97        <activity
+97-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\acer\.gradle\caches\transforms-2\files-2.1\7c879cb157fab2c9a5d74c3d70fd64e3\jetified-play-services-base-17.0.0\AndroidManifest.xml:23:9-26:75
+98            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+98-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\acer\.gradle\caches\transforms-2\files-2.1\7c879cb157fab2c9a5d74c3d70fd64e3\jetified-play-services-base-17.0.0\AndroidManifest.xml:24:13-79
+99            android:exported="false"
+99-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\acer\.gradle\caches\transforms-2\files-2.1\7c879cb157fab2c9a5d74c3d70fd64e3\jetified-play-services-base-17.0.0\AndroidManifest.xml:25:13-37
+100            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+100-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\acer\.gradle\caches\transforms-2\files-2.1\7c879cb157fab2c9a5d74c3d70fd64e3\jetified-play-services-base-17.0.0\AndroidManifest.xml:26:13-72
+101
+102        <meta-data
+102-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\acer\.gradle\caches\transforms-2\files-2.1\3c8e7eb3d21ac94d08f658f6d8a1c9f3\jetified-play-services-basement-17.0.0\AndroidManifest.xml:23:9-25:69
+103            android:name="com.google.android.gms.version"
+103-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\acer\.gradle\caches\transforms-2\files-2.1\3c8e7eb3d21ac94d08f658f6d8a1c9f3\jetified-play-services-basement-17.0.0\AndroidManifest.xml:24:13-58
+104            android:value="@integer/google_play_services_version" />
+104-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\acer\.gradle\caches\transforms-2\files-2.1\3c8e7eb3d21ac94d08f658f6d8a1c9f3\jetified-play-services-basement-17.0.0\AndroidManifest.xml:25:13-66
+105    </application>
+106
+107</manifest>

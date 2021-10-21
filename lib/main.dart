@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:html';
 
 import 'directions_model.dart';
 import 'essentials.dart';
@@ -12,7 +11,7 @@ import 'package:image_picker/image_picker.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'dart:io' as io;
+import 'dart:io';
 //import 'package:flutter/foundation.dart';
 
 void main() => runApp(MaterialApp(
@@ -24,6 +23,7 @@ void main() => runApp(MaterialApp(
         '/': (context) => SelectBranch(),
         '/visitUSTP': (context) => VisitUSTP(),
         '/mapNav': (context) => MapScreen(),
+        '/regQR': (context) => RegisterCode(),
       },
     ));
 
@@ -53,6 +53,7 @@ class VisitUSTP extends StatelessWidget {
   }
 }
 
+//ignore: must_be_immutable
 class RegisterCode extends StatefulWidget {
   //const RegisterCode({ Key? key }) : super(key: key);
 
@@ -61,20 +62,29 @@ class RegisterCode extends StatefulWidget {
 }
 
 class _RegisterCodeState extends State<RegisterCode> {
-  io.File imageCode;
+  File imageCode;
 
-  Future pickImage() async {
-    final imageCode =
-        await ImagePicker().pickImage(source: ImageSource.gallery);
-    if (imageCode == null) return;
+  Future imgPick() async {
+    try {
+      final imageCode =
+          await ImagePicker().pickImage(source: ImageSource.gallery);
+      if (imageCode == null) return;
 
-    final imageTemporary = io.File(imageCode.path);
-    this.imageCode = imageTemporary;
+      final imageTemporary = File(imageCode.path);
+      setState(() => this.imageCode = imageTemporary);
+
+      return imageCode;
+    } on PlatformException catch (e) {
+      print('Failed to pick image: $e');
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      body: bodyFormat(
+          context, '', ['Pick Gallery', 'Name'], 'input', imgPick, imageCode),
+    );
   }
 }
 

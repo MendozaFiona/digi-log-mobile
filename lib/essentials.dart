@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 
+import 'nonwidget_methods.dart' as nonwidget;
+import 'main.dart';
+
 SafeArea mapBody(_title) {
   // i think dapat i array ning optionText
   return SafeArea(
@@ -43,7 +46,8 @@ SafeArea mapBody(_title) {
   );
 }
 
-SafeArea bodyFormat(context, _title, _optionList, _functOption) {
+SafeArea bodyFormat(context, _title, _optionList, _functOption,
+    [_imgPick, _imageCode]) {
   // i think dapat i array ning optionText
   return SafeArea(
     child: Column(children: [
@@ -55,18 +59,7 @@ SafeArea bodyFormat(context, _title, _optionList, _functOption) {
               color: Color.fromRGBO(25, 24, 81, 1),
               borderRadius: BorderRadius.vertical(bottom: Radius.circular(50)),
             ),
-            child: Align(
-              //optional
-              alignment: Alignment.bottomCenter,
-              child: Text(_title,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 55,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                    fontFamily: 'Nunito',
-                  )),
-            ),
+            child: upperContent(_title, _functOption, _imageCode),
           )),
       Flexible(
           flex: 1,
@@ -84,16 +77,74 @@ SafeArea bodyFormat(context, _title, _optionList, _functOption) {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      optionSection(context, _optionList),
+                      if (_functOption == 'input') inputField(),
+                      optionSection(context, _optionList, _imgPick),
                     ],
                   ))))
     ]),
   );
 }
 
-Column optionSection(context, _optionList) {
+Align upperContent(_title, _functOption, _imageCode) {
+  if (_functOption == 'optSect') {
+    return Align(
+      alignment: Alignment.bottomCenter,
+      child: Text(_title,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontSize: 55,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+            fontFamily: 'Nunito',
+          )),
+    );
+  } else {
+    return Align(
+      alignment: Alignment.bottomCenter,
+      child: Column(children: [
+        _imageCode != null
+            ? Image.file(
+                _imageCode,
+                width: 160,
+                height: 160,
+              )
+            : FlutterLogo(
+                size: 160,
+              )
+      ]),
+    );
+  }
+}
+
+Container inputField() {
+  return Container(
+    height: 40,
+    width: 240,
+    child: TextFormField(
+      textAlign: TextAlign.center,
+      style: TextStyle(
+        fontSize: 20.0,
+      ),
+      decoration: InputDecoration(
+        hintText: 'Title',
+        filled: true,
+        fillColor: Colors.white,
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
+        focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Color.fromRGBO(25, 24, 81, 1),
+            ),
+            borderRadius: BorderRadius.circular(10.0)),
+        contentPadding: EdgeInsets.symmetric(horizontal: 2, vertical: 3),
+      ),
+    ),
+  );
+}
+
+Column optionSection(context, _optionList, _imgPick) {
   return Column(children: [
-    for (var options in _optionList) optionsLight(context, options.toString()),
+    for (var options in _optionList)
+      optionsLight(context, options.toString(), _imgPick),
   ]);
 }
 
@@ -128,15 +179,19 @@ TextButton txtButtonDefault(cntrlr, pos, title) {
   );
 }
 
-ElevatedButton optionsLight(context, _optionText) {
+ElevatedButton optionsLight(context, _optionText, _imgPick) {
+  //final RegisterCode regCode = new RegisterCode();
+
   return ElevatedButton(
     onPressed: () {
       if (_optionText == 'Cagayan de Oro') {
         Navigator.pushNamed(context, '/visitUSTP');
       } else if (_optionText == 'View Map') {
         Navigator.pushNamed(context, '/mapNav');
-      } else if(_optionText == 'Register QR Code') {
-        //pickImage();
+      } else if (_optionText == 'Register QR Code') {
+        Navigator.pushNamed(context, '/regQR');
+      } else if (_optionText == 'Pick Gallery') {
+        _imgPick();
       }
     },
     child: Text(_optionText,
