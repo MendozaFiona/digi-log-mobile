@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 
-import 'nonwidget_methods.dart' as nonwidget;
-import 'main.dart';
-
 SafeArea mapBody(_title) {
   // i think dapat i array ning optionText
   return SafeArea(
