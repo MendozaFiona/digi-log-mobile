@@ -44,8 +44,7 @@ SafeArea mapBody(_title) {
 }
 
 SafeArea bodyFormat(context, _title, _optionList, _functOption,
-    [_imgPick, _imageCode]) {
-  // i think dapat i array ning optionText
+    [_imgPick, _imageCode /*, _userSaveImage]*/]) {
   return SafeArea(
     child: Column(children: [
       Flexible(
@@ -74,8 +73,11 @@ SafeArea bodyFormat(context, _title, _optionList, _functOption,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      if (_functOption == 'input') inputField(),
-                      optionSection(context, _optionList, _imgPick),
+                      if (_functOption == 'input') inputField(_imageCode),
+                      optionSection(context, _optionList, _imgPick,
+                          _imageCode /*,
+                          _userSaveImage*/
+                          ),
                     ],
                   ))))
     ]),
@@ -99,11 +101,12 @@ Align upperContent(_title, _functOption, _imageCode) {
     return Align(
       alignment: Alignment.bottomCenter,
       child: Column(children: [
+        Spacer(),
         _imageCode != null
             ? Image.file(
                 _imageCode,
-                width: 160,
-                height: 160,
+                width: 350,
+                height: 300,
               )
             : FlutterLogo(
                 size: 160,
@@ -113,17 +116,39 @@ Align upperContent(_title, _functOption, _imageCode) {
   }
 }
 
-Container inputField() {
+final titleController = TextEditingController();
+
+setControllerText() {
+  titleController.text = '';
+}
+
+Container inputField(_imageCode) {
+  bool enableField = false;
+
+  @override
+  void dispose() {
+    titleController.dispose();
+    dispose(); // is this right?
+  }
+
+  if (_imageCode != null) {
+    enableField = true;
+  }
+
+  setControllerText();
+
   return Container(
     height: 40,
     width: 240,
     child: TextFormField(
+      controller: titleController,
       textAlign: TextAlign.center,
       style: TextStyle(
         fontSize: 20.0,
       ),
       decoration: InputDecoration(
         hintText: 'Title',
+        enabled: enableField,
         filled: true,
         fillColor: Colors.white,
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
@@ -138,10 +163,12 @@ Container inputField() {
   );
 }
 
-Column optionSection(context, _optionList, _imgPick) {
+Column optionSection(
+    context, _optionList, _imgPick, _imageCode /*, _userSaveImage*/) {
   return Column(children: [
     for (var options in _optionList)
-      optionsLight(context, options.toString(), _imgPick),
+      optionsLight(context, options.toString(), _imgPick,
+          _imageCode /*, _userSaveImage*/),
   ]);
 }
 
@@ -176,9 +203,8 @@ TextButton txtButtonDefault(cntrlr, pos, title) {
   );
 }
 
-ElevatedButton optionsLight(context, _optionText, _imgPick) {
-  //final RegisterCode regCode = new RegisterCode();
-
+ElevatedButton optionsLight(
+    context, _optionText, _imgPick, _imageCode /*, _userSaveImage*/) {
   return ElevatedButton(
     onPressed: () {
       if (_optionText == 'Cagayan de Oro') {
@@ -189,6 +215,14 @@ ElevatedButton optionsLight(context, _optionText, _imgPick) {
         Navigator.pushNamed(context, '/regQR');
       } else if (_optionText == 'Pick Gallery') {
         _imgPick();
+      } else if (_optionText == 'Save') {
+        print('passed save');
+        if (_imageCode == null || titleController.text == '') {
+          return null;
+        } else {
+          print(titleController.text);
+          print('test');
+        }
       }
     },
     child: Text(_optionText,

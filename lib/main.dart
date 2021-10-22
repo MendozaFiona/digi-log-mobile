@@ -8,6 +8,8 @@ import 'package:location/location.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:path/path.dart' as path;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -70,8 +72,10 @@ class _RegisterCodeState extends State<RegisterCode> {
           await ImagePicker().pickImage(source: ImageSource.gallery);
       if (imageCode == null) return;
 
-      final imageTemporary = File(imageCode.path);
-      setState(() => this.imageCode = imageTemporary);
+      //final imageTemporary = File(imageCode.path);
+      //setState(() => this.imageCode = imageTemporary);
+      final imagePermanent = await saveImagePermanently(imageCode.path);
+      setState(() => this.imageCode = imagePermanent);
 
       return imageCode;
     } on PlatformException catch (e) {
@@ -79,11 +83,26 @@ class _RegisterCodeState extends State<RegisterCode> {
     }
   }
 
+  /*Future userSaveImage(_imageCode) async {
+    print('passed user Save Image');
+    final imagePermanent = await saveImagePermanently(_imageCode.path);
+    setState(() => this.imageCode = imagePermanent);
+  }*/
+
+  Future<File> saveImagePermanently(String imagePath) async {
+    final directory = await getApplicationDocumentsDirectory();
+    final name = path.basename(imagePath);
+    final image = File('${directory.path}/$name');
+
+    return File(imagePath).copy(image.path);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: bodyFormat(
-          context, '', ['Pick Gallery', 'Name'], 'input', imgPick, imageCode),
+      resizeToAvoidBottomInset: false,
+      body: bodyFormat(context, '', ['Pick Gallery', 'Save'], 'input', imgPick,
+          imageCode /*, userSaveImage*/),
     );
   }
 }

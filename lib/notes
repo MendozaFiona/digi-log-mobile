@@ -4,6 +4,17 @@ github:
 https://github.com/eopeter/flutter_mapbox_navigation
 https://docs.mapbox.com/android/navigation/guides/offline-service/
 
+        bool _isBtnEnabled = false;
+
+        if (pos != null) {
+          _isBtnEnabled = true;
+        }
+
+        return TextButton(
+          onPressed: _isBtnEnabled ? () => method(): null
+
+        ///////////////////////////////////
+        
         return AlertDialog(
           title: Text("Internet Connection"),
           content: Text(
@@ -15,6 +26,8 @@ https://docs.mapbox.com/android/navigation/guides/offline-service/
             )
           ],
         );
+
+        ///////////////////////////////////
 
         Column fillupForm(context, _formTitle) {
           return Column(
