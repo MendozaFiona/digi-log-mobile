@@ -25,6 +25,7 @@ void main() => runApp(MaterialApp(
         '/': (context) => SelectBranch(),
         '/visitUSTP': (context) => VisitUSTP(),
         '/mapNav': (context) => MapScreen(),
+        '/showQR': (context) => ShowCode(),
         '/regQR': (context) => RegisterCode(),
       },
     ));
@@ -55,6 +56,21 @@ class VisitUSTP extends StatelessWidget {
   }
 }
 
+class ShowCode extends StatefulWidget {
+  //const ShowCode({ Key? key }) : super(key: key);
+
+  @override
+  _ShowCodeState createState() => _ShowCodeState();
+}
+
+class _ShowCodeState extends State<ShowCode> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: SingleChildScrollView(child: savedImages(context, imgMap)));
+  }
+}
+
 //ignore: must_be_immutable
 class RegisterCode extends StatefulWidget {
   //const RegisterCode({ Key? key }) : super(key: key);
@@ -62,6 +78,8 @@ class RegisterCode extends StatefulWidget {
   @override
   _RegisterCodeState createState() => _RegisterCodeState();
 }
+
+var imgMap = new Map();
 
 class _RegisterCodeState extends State<RegisterCode> {
   File imageCode;
@@ -72,10 +90,10 @@ class _RegisterCodeState extends State<RegisterCode> {
           await ImagePicker().pickImage(source: ImageSource.gallery);
       if (imageCode == null) return;
 
-      //final imageTemporary = File(imageCode.path);
-      //setState(() => this.imageCode = imageTemporary);
-      final imagePermanent = await saveImagePermanently(imageCode.path);
-      setState(() => this.imageCode = imagePermanent);
+      final imageTemporary = File(imageCode.path);
+      setState(() => this.imageCode = imageTemporary);
+      //final imagePermanent = await saveImagePermanently(imageCode.path);
+      //setState(() => this.imageCode = imagePermanent);
 
       return imageCode;
     } on PlatformException catch (e) {
@@ -83,16 +101,20 @@ class _RegisterCodeState extends State<RegisterCode> {
     }
   }
 
-  /*Future userSaveImage(_imageCode) async {
+  Future userSaveImage(_imageCode, _title) async {
     print('passed user Save Image');
-    final imagePermanent = await saveImagePermanently(_imageCode.path);
+    final imagePermanent = await saveImagePermanently(_imageCode.path, _title);
     setState(() => this.imageCode = imagePermanent);
-  }*/
+  }
 
-  Future<File> saveImagePermanently(String imagePath) async {
+  Future<File> saveImagePermanently(String imagePath, _title) async {
     final directory = await getApplicationDocumentsDirectory();
     final name = path.basename(imagePath);
-    final image = File('${directory.path}/$name');
+    final imageDir = '${directory.path}/$name';
+    final image = File(imageDir);
+
+    //imgMap.clear(); // remove when finalized
+    imgMap[_title] = (imageDir);
 
     return File(imagePath).copy(image.path);
   }
@@ -102,7 +124,7 @@ class _RegisterCodeState extends State<RegisterCode> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: bodyFormat(context, '', ['Pick Gallery', 'Save'], 'input', imgPick,
-          imageCode /*, userSaveImage*/),
+          imageCode, userSaveImage),
     );
   }
 }

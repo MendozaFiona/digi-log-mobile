@@ -44,7 +44,7 @@ SafeArea mapBody(_title) {
 }
 
 SafeArea bodyFormat(context, _title, _optionList, _functOption,
-    [_imgPick, _imageCode /*, _userSaveImage]*/]) {
+    [_imgPick, _imageCode, _userSaveImage]) {
   return SafeArea(
     child: Column(children: [
       Flexible(
@@ -74,10 +74,9 @@ SafeArea bodyFormat(context, _title, _optionList, _functOption,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       if (_functOption == 'input') inputField(_imageCode),
-                      optionSection(context, _optionList, _imgPick,
-                          _imageCode /*,
-                          _userSaveImage*/
-                          ),
+                      if (_optionList != null)
+                        optionSection(context, _optionList, _imgPick,
+                            _imageCode, _userSaveImage),
                     ],
                   ))))
     ]),
@@ -116,6 +115,49 @@ Align upperContent(_title, _functOption, _imageCode) {
   }
 }
 
+SafeArea savedImages(context, _imgMap) {
+  return SafeArea(
+      child: Column(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: [
+      Container(
+        padding: EdgeInsets.symmetric(vertical: 40.0),
+        decoration: BoxDecoration(
+          color: Color.fromRGBO(25, 24, 81, 1),
+          borderRadius: BorderRadius.vertical(bottom: Radius.circular(50)),
+        ),
+        child: Text('Saved QR Images',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 50,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+              fontFamily: 'Nunito',
+            )),
+      ),
+      Container(
+          margin: EdgeInsets.symmetric(vertical: 40, horizontal: 10),
+          padding: EdgeInsets.symmetric(horizontal: 40),
+          decoration: BoxDecoration(
+            color: Color.fromRGBO(255, 255, 255, 0.15),
+            border: Border.all(
+              color: Colors.white,
+            ),
+            borderRadius: BorderRadius.all(Radius.circular(20)),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              if (_imgMap != null)
+                for (var title in _imgMap.keys)
+                  //Image.file(File(imgMap[title])),
+                  optionsLight(context, _imgMap, title)
+            ],
+          ))
+    ],
+  ));
+}
+
 final titleController = TextEditingController();
 
 setControllerText() {
@@ -135,7 +177,7 @@ Container inputField(_imageCode) {
     enableField = true;
   }
 
-  setControllerText();
+  setControllerText(); // remove text when back is pressed
 
   return Container(
     height: 40,
@@ -164,11 +206,11 @@ Container inputField(_imageCode) {
 }
 
 Column optionSection(
-    context, _optionList, _imgPick, _imageCode /*, _userSaveImage*/) {
+    context, _optionList, _imgPick, _imageCode, _userSaveImage) {
   return Column(children: [
     for (var options in _optionList)
-      optionsLight(context, options.toString(), _imgPick,
-          _imageCode /*, _userSaveImage*/),
+      optionsLight(context, null, options.toString(), _imgPick, _imageCode,
+          _userSaveImage),
   ]);
 }
 
@@ -203,25 +245,30 @@ TextButton txtButtonDefault(cntrlr, pos, title) {
   );
 }
 
-ElevatedButton optionsLight(
-    context, _optionText, _imgPick, _imageCode /*, _userSaveImage*/) {
+ElevatedButton optionsLight(context,
+    [_imgMap, _optionText, _imgPick, _imageCode, _userSaveImage]) {
   return ElevatedButton(
     onPressed: () {
+      // for page navigation
       if (_optionText == 'Cagayan de Oro') {
         Navigator.pushNamed(context, '/visitUSTP');
       } else if (_optionText == 'View Map') {
         Navigator.pushNamed(context, '/mapNav');
+      } else if (_optionText == 'Show QR Code') {
+        Navigator.pushNamed(context, '/showQR');
       } else if (_optionText == 'Register QR Code') {
         Navigator.pushNamed(context, '/regQR');
-      } else if (_optionText == 'Pick Gallery') {
+      }
+
+      // for others
+      else if (_optionText == 'Pick Gallery') {
         _imgPick();
       } else if (_optionText == 'Save') {
         print('passed save');
         if (_imageCode == null || titleController.text == '') {
           return null;
         } else {
-          print(titleController.text);
-          print('test');
+          _userSaveImage(_imageCode, titleController.text);
         }
       }
     },

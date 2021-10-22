@@ -4,6 +4,29 @@ github:
 https://github.com/eopeter/flutter_mapbox_navigation
 https://docs.mapbox.com/android/navigation/guides/offline-service/
 
+            Center(
+              child: Container(
+                  margin: EdgeInsets.symmetric(vertical: 40, horizontal: 10),
+                  padding: EdgeInsets.symmetric(horizontal: 40),
+                  decoration: BoxDecoration(
+                    color: Color.fromRGBO(255, 255, 255, 0.15),
+                    border: Border.all(
+                      color: Colors.white,
+                    ),
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      if (_functOption == 'input') inputField(_imageCode),
+                      if (_optionList != null)
+                        optionSection(context, _optionList, _imgPick,
+                            _imageCode, _userSaveImage),
+                    ],
+                  )))
+
+        ////////////////////////////////////
+
         bool _isBtnEnabled = false;
 
         if (pos != null) {
