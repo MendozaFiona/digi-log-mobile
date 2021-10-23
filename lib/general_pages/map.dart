@@ -1,5 +1,5 @@
 import '../directions_model.dart';
-import '../essentials.dart';
+import 'package:digi_logbook/essentials/small_widgets.dart';
 
 import 'package:digi_logbook/directions_repository.dart';
 import 'package:location/location.dart';

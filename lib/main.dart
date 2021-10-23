@@ -1,4 +1,4 @@
-import 'essentials.dart';
+import 'essentials/page_format.dart';
 import 'general_pages/map.dart';
 import 'general_pages/code_qr.dart';
 

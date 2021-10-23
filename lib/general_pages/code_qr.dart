@@ -1,4 +1,4 @@
-import '../essentials.dart';
+import 'package:digi_logbook/essentials/page_format.dart';
 
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
@@ -44,8 +44,6 @@ class _RegisterCodeState extends State<RegisterCode> {
 
       final imageTemporary = File(imageCode.path);
       setState(() => this.imageCode = imageTemporary);
-      //final imagePermanent = await saveImagePermanently(imageCode.path);
-      //setState(() => this.imageCode = imagePermanent);
 
       return imageCode;
     } on PlatformException catch (e) {
@@ -62,8 +60,18 @@ class _RegisterCodeState extends State<RegisterCode> {
   Future<File> saveImagePermanently(String imagePath, _title) async {
     final directory = await getApplicationDocumentsDirectory();
     final ext = path.extension(imagePath);
-    final name = _title + ext;
-    final imageDir = '${directory.path}/$name';
+    var name = _title + ext;
+    var imageDir = '${directory.path}/$name';
+
+    List dirList = directoryList(directory);
+
+    for (String _item in dirList) {
+      if (_item == imageDir) {
+        name = _title + '_copy' + ext;
+        imageDir = '${directory.path}/$name';
+      }
+    }
+
     final image = File(imageDir);
 
     initImages();
@@ -84,16 +92,25 @@ class _RegisterCodeState extends State<RegisterCode> {
 // Outside Methods
 
 var imgMap = new Map();
-Future initImages() async {
-  final directory = await getApplicationDocumentsDirectory();
 
-  imgMap.clear();
-  List dirList = directory
+directoryList(directory) {
+  List _dirList = directory
       .listSync()
       .map((item) => item.path)
       .where((item) => item.endsWith(".jpg") || item.endsWith(".png"))
       .toList(growable: false);
 
+  return _dirList;
+}
+
+Future initImages() async {
+  final directory = await getApplicationDocumentsDirectory();
+
+  imgMap.clear();
+  List dirList = directoryList(directory);
+
   imgMap = Map.fromIterable(dirList,
       key: (item) => item.split('/').last, value: (item) => item);
+
+  print(imgMap);
 }
