@@ -64,26 +64,11 @@ class _MapScreenState extends State<MapScreen> {
   }
 
   internetChangePrompt() {
-    Widget okButton = TextButton(
-      child: Text("OK"),
-      onPressed: () {
-        Navigator.pop(context);
-        popMapNav();
-      },
-    );
-
-    WillPopScope alert = WillPopScope(
-        onWillPop: () async {
-          return false;
-        },
-        child: AlertDialog(
-          title: Text("Internet Connection Required"),
-          content: Text(
-              "The routing feature requires Internet connection to function properly. Please turn on your Internet."),
-          actions: [
-            okButton,
-          ],
-        ));
+    WillPopScope alert = dialogPrompt(
+        context,
+        "Internet Connection Required",
+        "The routing feature requires Internet connection to function properly. Please turn on your Internet.",
+        popMapNav);
 
     showDialog(
       context: context,

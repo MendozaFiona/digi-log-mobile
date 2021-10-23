@@ -99,10 +99,17 @@ ElevatedButton optionsLight(context,
       else if (_optionText == 'Pick Gallery') {
         _imgPick();
       } else if (_optionText == 'Save') {
-        print('passed save');
         if (_imageCode == null || titleController.text == '') {
           return null;
         } else {
+          WillPopScope alert =
+              dialogPrompt(context, "Image Saved", "Image Successfully Saved.");
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return alert;
+            },
+          );
           _userSaveImage(_imageCode, titleController.text);
         }
       }
@@ -141,6 +148,32 @@ ElevatedButton optionsDark(context, _optionText) {
       ),
     ),
   );
+}
+
+TextButton okButton(context, [_additionalFunct]) {
+  return TextButton(
+      child: Text("OK"),
+      onPressed: () {
+        Navigator.pop(context);
+        if (_additionalFunct != null) {
+          _additionalFunct();
+        }
+      });
+}
+
+WillPopScope dialogPrompt(context, _headTxt, _content, [_additionalFunct]) {
+  return WillPopScope(
+      onWillPop: () async {
+        return false;
+      },
+      child: AlertDialog(
+        title: Text(_headTxt),
+        content: Text(_content),
+        actions: [
+          if (_additionalFunct != null) okButton(context, _additionalFunct),
+          if (_additionalFunct == null) okButton(context)
+        ],
+      ));
 }
 
 Container navDetails(_info, defaultWidth) {

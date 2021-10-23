@@ -17,11 +17,12 @@ class ShowCode extends StatefulWidget {
 }
 
 class _ShowCodeState extends State<ShowCode> {
+//SingleChildScrollView(child: savedImages(context, imgMap))
   @override
   Widget build(BuildContext context) {
-    initImages();
     return Scaffold(
-        body: SingleChildScrollView(child: savedImages(context, imgMap)));
+        body: Center(
+            child: SingleChildScrollView(child: savedImages(context, imgMap))));
   }
 }
 
@@ -65,12 +66,24 @@ class _RegisterCodeState extends State<RegisterCode> {
 
     List dirList = directoryList(directory);
 
-    for (String _item in dirList) {
+    for (var i = 0; i < dirList.length; i++) {
+      if (dirList[i] == imageDir) {
+        name = _title + '_copy' + ext;
+        imageDir = '${directory.path}/$name';
+        i = i - 1;
+        continue;
+      }
+    }
+
+    /*for (String _item in dirList) {
       if (_item == imageDir) {
         name = _title + '_copy' + ext;
         imageDir = '${directory.path}/$name';
+
+        dirList.clear();
+        dirList = directoryList(directory);
       }
-    }
+    }*/
 
     final image = File(imageDir);
 

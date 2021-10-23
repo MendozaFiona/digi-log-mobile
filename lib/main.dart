@@ -22,6 +22,7 @@ void main() => runApp(MaterialApp(
 class SelectBranch extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    initImages();
     return Scaffold(
       body: bodyFormat(context, 'Select BRANCH', ['Cagayan de Oro'], 'optSect'),
     );

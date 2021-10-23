@@ -34,8 +34,13 @@ Align upperContent(_title, _functOption, _imageCode) {
                 width: 350,
                 height: 300,
               )
-            : FlutterLogo(
-                size: 160,
+            : Text(
+                'no image set',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontFamily: 'Nunito',
+                  fontSize: 18,
+                ),
               )
       ]),
     );
