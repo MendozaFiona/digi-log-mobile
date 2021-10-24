@@ -76,7 +76,7 @@ SafeArea bodyFormat(context, _title, _optionList, _functOption,
                       if (_functOption == 'input') inputField(_imageCode),
                       if (_optionList != null)
                         optionSection(context, _optionList, _imgPick,
-                            _imageCode, _userSaveImage),
+                            _imageCode, _userSaveImage)
                     ],
                   ))))
     ]),

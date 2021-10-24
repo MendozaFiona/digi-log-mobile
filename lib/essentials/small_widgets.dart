@@ -1,6 +1,8 @@
+import 'package:digi_logbook/general_pages/code_qr.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:path/path.dart';
 
 final titleController = TextEditingController();
 
@@ -102,15 +104,26 @@ ElevatedButton optionsLight(context,
         if (_imageCode == null || titleController.text == '') {
           return null;
         } else {
-          WillPopScope alert =
-              dialogPrompt(context, "Image Saved", "Image Successfully Saved.");
-          showDialog(
-            context: context,
-            builder: (BuildContext context) {
-              return alert;
-            },
-          );
-          _userSaveImage(_imageCode, titleController.text);
+          if (checkTitle(titleController.text)) {
+            WillPopScope alert = dialogPrompt(context, "Duplicate Title",
+                "Title is a duplicate of an existing saved image. Please rename.");
+            showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return alert;
+              },
+            );
+          } else {
+            WillPopScope alert = dialogPrompt(
+                context, "Image Saved", "Image Successfully Saved.");
+            showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return alert;
+              },
+            );
+            _userSaveImage(_imageCode, titleController.text);
+          }
         }
       }
     },

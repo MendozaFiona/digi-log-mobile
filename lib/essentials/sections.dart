@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'small_widgets.dart';
 
-Column optionSection(
-    context, _optionList, _imgPick, _imageCode, _userSaveImage) {
+Column optionSection(context,
+    [_optionList, _imgPick, _imageCode, _userSaveImage]) {
   return Column(children: [
     for (var options in _optionList)
       optionsLight(context, null, options.toString(), _imgPick, _imageCode,

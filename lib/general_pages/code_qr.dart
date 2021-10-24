@@ -59,31 +59,16 @@ class _RegisterCodeState extends State<RegisterCode> {
   }
 
   Future<File> saveImagePermanently(String imagePath, _title) async {
-    final directory = await getApplicationDocumentsDirectory();
+    final directory = await getDir();
     final ext = path.extension(imagePath);
-    var name = _title + ext;
-    var imageDir = '${directory.path}/$name';
+    final name = _title + ext;
+    final imageDir = '${directory.path}/$name';
 
     List dirList = directoryList(directory);
 
     for (var i = 0; i < dirList.length; i++) {
-      if (dirList[i] == imageDir) {
-        name = _title + '_copy' + ext;
-        imageDir = '${directory.path}/$name';
-        i = i - 1;
-        continue;
-      }
+      if (dirList[i] == imageDir) {}
     }
-
-    /*for (String _item in dirList) {
-      if (_item == imageDir) {
-        name = _title + '_copy' + ext;
-        imageDir = '${directory.path}/$name';
-
-        dirList.clear();
-        dirList = directoryList(directory);
-      }
-    }*/
 
     final image = File(imageDir);
 
@@ -105,6 +90,7 @@ class _RegisterCodeState extends State<RegisterCode> {
 // Outside Methods
 
 var imgMap = new Map();
+var directory;
 
 directoryList(directory) {
   List _dirList = directory
@@ -117,7 +103,7 @@ directoryList(directory) {
 }
 
 Future initImages() async {
-  final directory = await getApplicationDocumentsDirectory();
+  final directory = await getDir();
 
   imgMap.clear();
   List dirList = directoryList(directory);
@@ -125,5 +111,31 @@ Future initImages() async {
   imgMap = Map.fromIterable(dirList,
       key: (item) => item.split('/').last, value: (item) => item);
 
-  print(imgMap);
+  //print(imgMap);
+}
+
+Future getDir() async {
+  directory = await getApplicationDocumentsDirectory();
+  return directory;
+}
+
+bool checkTitle(_title) {
+  final _imgDir = _title;
+  List dirList = directoryList(directory);
+  String _filename;
+  bool _doesExist = false;
+
+  for (var i = 0; i < dirList.length; i++) {
+    _filename = path.basenameWithoutExtension(dirList[i]);
+    if (_filename == _imgDir) {
+      _doesExist = true;
+      break;
+    }
+  }
+
+  print("filename: " + _filename);
+  print("imageDir: " + _imgDir);
+
+  print(_doesExist);
+  return _doesExist;
 }
