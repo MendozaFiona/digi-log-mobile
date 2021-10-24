@@ -92,7 +92,8 @@ SafeArea savedImages(context, _imgMap) {
         padding: EdgeInsets.symmetric(vertical: 40.0),
         decoration: BoxDecoration(
           color: Color.fromRGBO(25, 24, 81, 1),
-          borderRadius: BorderRadius.vertical(bottom: Radius.circular(50)),
+          borderRadius: BorderRadius.vertical(
+              bottom: Radius.circular(50), top: Radius.circular(50)),
         ),
         child: Text('Saved QR Images',
             textAlign: TextAlign.center,
@@ -118,8 +119,7 @@ SafeArea savedImages(context, _imgMap) {
             children: [
               if (_imgMap != null)
                 for (var title in _imgMap.keys)
-                  //Image.file(File(imgMap[title])),
-                  optionsLight(context, _imgMap, title)
+                  optionsLight(context, _imgMap, title),
             ],
           ))
     ],

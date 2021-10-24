@@ -118,24 +118,3 @@ Future getDir() async {
   directory = await getApplicationDocumentsDirectory();
   return directory;
 }
-
-bool checkTitle(_title) {
-  final _imgDir = _title;
-  List dirList = directoryList(directory);
-  String _filename;
-  bool _doesExist = false;
-
-  for (var i = 0; i < dirList.length; i++) {
-    _filename = path.basenameWithoutExtension(dirList[i]);
-    if (_filename == _imgDir) {
-      _doesExist = true;
-      break;
-    }
-  }
-
-  print("filename: " + _filename);
-  print("imageDir: " + _imgDir);
-
-  print(_doesExist);
-  return _doesExist;
-}

@@ -1,8 +1,8 @@
-import 'package:digi_logbook/general_pages/code_qr.dart';
+import 'widget_methods.dart';
+
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:path/path.dart';
 
 final titleController = TextEditingController();
 
@@ -86,46 +86,8 @@ ElevatedButton optionsLight(context,
     [_imgMap, _optionText, _imgPick, _imageCode, _userSaveImage]) {
   return ElevatedButton(
     onPressed: () {
-      // for page navigation
-      if (_optionText == 'Cagayan de Oro') {
-        Navigator.pushNamed(context, '/visitUSTP');
-      } else if (_optionText == 'View Map') {
-        Navigator.pushNamed(context, '/mapNav');
-      } else if (_optionText == 'Show QR Code') {
-        Navigator.pushNamed(context, '/showQR');
-      } else if (_optionText == 'Register QR Code') {
-        Navigator.pushNamed(context, '/regQR');
-      }
-
-      // for others
-      else if (_optionText == 'Pick Gallery') {
-        _imgPick();
-      } else if (_optionText == 'Save') {
-        if (_imageCode == null || titleController.text == '') {
-          return null;
-        } else {
-          if (checkTitle(titleController.text)) {
-            WillPopScope alert = dialogPrompt(context, "Duplicate Title",
-                "Title is a duplicate of an existing saved image. Please rename.");
-            showDialog(
-              context: context,
-              builder: (BuildContext context) {
-                return alert;
-              },
-            );
-          } else {
-            WillPopScope alert = dialogPrompt(
-                context, "Image Saved", "Image Successfully Saved.");
-            showDialog(
-              context: context,
-              builder: (BuildContext context) {
-                return alert;
-              },
-            );
-            _userSaveImage(_imageCode, titleController.text);
-          }
-        }
-      }
+      optionResponse(context, _imgMap, _optionText, titleController.text,
+          _imageCode, _imgPick, _userSaveImage);
     },
     child: Text(_optionText,
         style: TextStyle(
@@ -180,8 +142,10 @@ WillPopScope dialogPrompt(context, _headTxt, _content, [_additionalFunct]) {
         return false;
       },
       child: AlertDialog(
+        insetPadding: EdgeInsets.all(10),
+        contentPadding: promptContentType(_content, "inpadding"),
         title: Text(_headTxt),
-        content: Text(_content),
+        content: promptContentType(_content, "content"),
         actions: [
           if (_additionalFunct != null) okButton(context, _additionalFunct),
           if (_additionalFunct == null) okButton(context)
