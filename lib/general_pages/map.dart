@@ -217,6 +217,7 @@ class _MapScreenState extends State<MapScreen> {
   void _addMarker(LatLng pos) async {
     if (_origin == null || (_origin != null && _destination != null)) {
       setState(() {
+        //_origin =
         _origin = Marker(
           markerId: MarkerId('origin'),
           infoWindow: InfoWindow(title: 'Origin'),
