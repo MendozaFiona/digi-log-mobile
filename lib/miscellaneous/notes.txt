@@ -3,3 +3,20 @@ https://pub.dev/packages/flutter_mapbox_navigation
 github:
 https://github.com/eopeter/flutter_mapbox_navigation
 https://docs.mapbox.com/android/navigation/guides/offline-service/
+
+    /*FloatingSearchBarAction(
+        showIfOpened: false,
+        child: CircularButton(
+          icon: Icon(Icons.place),
+          onPressed: () {},
+        ),
+      ),
+      FloatingSearchBarAction.searchToClear(
+        showIfClosed: false,
+      ),*/
+
+      Column(
+            mainAxisSize: MainAxisSize.min,
+            children: Colors.accents.map((color) {
+              return Container(height: 112, color: color);
+            }).toList(),

@@ -1,7 +1,9 @@
 import 'package:digi_logbook/essentials/ustp_locations.dart';
+import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 
 import '../directions_model.dart';
 import 'package:digi_logbook/essentials/small_widgets.dart';
+import 'package:digi_logbook/essentials/search_bar.dart';
 
 import 'package:digi_logbook/directions_repository.dart';
 import 'package:location/location.dart';
@@ -14,11 +16,10 @@ import 'dart:async';
 
 class MapScreen extends StatefulWidget {
   @override
-  _MapScreenState createState() => _MapScreenState();
+  MapScreenState createState() => MapScreenState();
 }
 
-class _MapScreenState extends State<MapScreen> {
-  static const searchLength = 10;
+class MapScreenState extends State<MapScreen> {
   List<String> _visibleLocs = [];
 
   // for showing terms according to what's currently typed
@@ -30,7 +31,9 @@ class _MapScreenState extends State<MapScreen> {
     @required String filter,
   }) {
     if (filter != null && filter.isNotEmpty) {
-      return _visibleLocs.where((term) => term.startsWith(filter)).toList();
+      return _visibleLocs
+          .where((term) => term.toLowerCase().contains(filter.toLowerCase()))
+          .toList();
     } else {
       return _visibleLocs.toList();
     }
@@ -44,18 +47,20 @@ class _MapScreenState extends State<MapScreen> {
       _visibleLocs.add(buildingLoc[num]['name']);
     }
 
-    // to limit what is shown under the search bar
-    if (_visibleLocs.length > searchLength) {
-      _visibleLocs.removeRange(searchLength, _visibleLocs.length);
-    }
+    _visibleLocs.sort();
 
     filteredVisibleLocs = filterLocs(filter: null);
   }
+
+  // for the search bar
+  FloatingSearchBarController searchBarController;
 
   @override
   void initState() {
     initConnectivity();
     permitLocation();
+    searchTerms();
+    searchBarController = FloatingSearchBarController();
     filteredVisibleLocs = filterLocs(filter: null);
     super.initState();
 
@@ -163,13 +168,12 @@ class _MapScreenState extends State<MapScreen> {
   void dispose() {
     _googleMapController.dispose();
     _connectivitySubscription.cancel();
+    searchBarController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    final isPortrait =
-        MediaQuery.of(context).orientation == Orientation.portrait;
     final defaultWidth = MediaQuery.of(context).size.width;
     final defaultHeight = MediaQuery.of(context).size.height;
 
@@ -208,6 +212,32 @@ class _MapScreenState extends State<MapScreen> {
                 onLongPress: _addMarker,
                 // 4now
               ),
+              Positioned(
+                  bottom: 0,
+                  height: defaultHeight / 6,
+                  width: defaultWidth,
+                  child: Container(
+                    padding: EdgeInsets.fromLTRB(60, 0, 60, 10),
+                    decoration: BoxDecoration(
+                      color: Color.fromRGBO(25, 24, 81, 1),
+                      borderRadius:
+                          BorderRadius.vertical(top: Radius.circular(50)),
+                    ),
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              txtButtonDefault(
+                                  _googleMapController, _origin, 'ORIGIN'),
+                              txtButtonDefault(
+                                  _googleMapController, _destination, 'DEST.'),
+                            ],
+                          ),
+                          optionsDark(context, 'Show QR Code')
+                        ]),
+                  )),
               if (_info != null)
                 Positioned(
                   bottom: defaultHeight / 6 + 10.0,
@@ -219,32 +249,7 @@ class _MapScreenState extends State<MapScreen> {
               top: 10,
               height: defaultHeight,
               width: defaultWidth,
-              child: mapSearchBar(isPortrait)),
-          Positioned(
-              bottom: 0,
-              height: defaultHeight / 6,
-              width: defaultWidth,
-              child: Container(
-                padding: EdgeInsets.fromLTRB(60, 0, 60, 10),
-                decoration: BoxDecoration(
-                  color: Color.fromRGBO(25, 24, 81, 1),
-                  borderRadius: BorderRadius.vertical(top: Radius.circular(50)),
-                ),
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          txtButtonDefault(
-                              _googleMapController, _origin, 'ORIGIN'),
-                          txtButtonDefault(
-                              _googleMapController, _destination, 'DEST.'),
-                        ],
-                      ),
-                      optionsDark(context, 'Show QR Code')
-                    ]),
-              )),
+              child: MapSearch()),
         ]),
       ),
     );
