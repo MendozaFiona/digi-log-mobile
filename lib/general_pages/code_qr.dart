@@ -1,4 +1,5 @@
 import 'package:digi_logbook/essentials/page_format.dart';
+import 'package:digi_logbook/essentials/ustp_locations.dart' as ustploc;
 
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
@@ -20,6 +21,7 @@ class _ShowCodeState extends State<ShowCode> {
 //SingleChildScrollView(child: savedImages(context, imgMap))
   @override
   Widget build(BuildContext context) {
+    print(ustploc.buildingLoc['1']['name']);
     return Scaffold(
         body: Center(
             child: SingleChildScrollView(child: savedImages(context, imgMap))));

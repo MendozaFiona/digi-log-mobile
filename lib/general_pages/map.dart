@@ -1,3 +1,5 @@
+import 'package:digi_logbook/essentials/ustp_locations.dart';
+
 import '../directions_model.dart';
 import 'package:digi_logbook/essentials/small_widgets.dart';
 
@@ -16,10 +18,45 @@ class MapScreen extends StatefulWidget {
 }
 
 class _MapScreenState extends State<MapScreen> {
+  static const searchLength = 10;
+  List<String> _visibleLocs = [];
+
+  // for showing terms according to what's currently typed
+  List<String> filteredVisibleLocs;
+
+  String selectedTerm;
+
+  List<String> filterLocs({
+    @required String filter,
+  }) {
+    if (filter != null && filter.isNotEmpty) {
+      return _visibleLocs.where((term) => term.startsWith(filter)).toList();
+    } else {
+      return _visibleLocs.toList();
+    }
+  }
+
+  void searchTerms() {
+    // to avoid duplicates whenever this method is called
+    _visibleLocs.clear();
+
+    for (String num in buildingLoc.keys) {
+      _visibleLocs.add(buildingLoc[num]['name']);
+    }
+
+    // to limit what is shown under the search bar
+    if (_visibleLocs.length > searchLength) {
+      _visibleLocs.removeRange(searchLength, _visibleLocs.length);
+    }
+
+    filteredVisibleLocs = filterLocs(filter: null);
+  }
+
   @override
   void initState() {
     initConnectivity();
     permitLocation();
+    filteredVisibleLocs = filterLocs(filter: null);
     super.initState();
 
     _connectivitySubscription =
