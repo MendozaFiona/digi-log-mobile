@@ -133,6 +133,7 @@ TextButton okButton(context, [_additionalFunct]) {
         Navigator.pop(context);
         if (_additionalFunct != null) {
           _additionalFunct();
+          _additionalFunct();
         }
       });
 }

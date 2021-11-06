@@ -1,5 +1,9 @@
+import 'package:digi_logbook/essentials/ustp_locations.dart';
+import 'package:digi_logbook/essentials/widget_methods.dart';
+import 'package:digi_logbook/directions_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:digi_logbook/general_pages/map.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 
 class MapSearch extends MapScreen {
@@ -54,10 +58,34 @@ class _MapSearchState extends MapScreenState {
                               overflow: TextOverflow.ellipsis,
                             ),
                             leading: Icon(Icons.place),
-                            onTap: () {
-                              setState(() {
+                            onTap: () async {
+                              super.setState(() {
                                 selectedTerm = term;
+                                var _key = findLoc(term);
+                                double _lat = buildingLoc[_key]['latitude'];
+                                double _long = buildingLoc[_key]['longitude'];
+                                LatLng _latLng = LatLng(_lat, _long);
+                                destPos = _latLng;
+
+                                dest = null;
+                                infoDirect = null;
+
+                                setState(() {
+                                  dest = Marker(
+                                    markerId: MarkerId('destination'),
+                                    infoWindow:
+                                        InfoWindow(title: 'Destination'),
+                                    icon: BitmapDescriptor.defaultMarkerWithHue(
+                                        BitmapDescriptor.hueRed),
+                                    position: destPos,
+                                  );
+                                });
                               });
+                              // Get directions
+                              final directions = await DirectionsRepository()
+                                  .getDirections(
+                                      origin: origPos, destination: destPos);
+                              setState(() => infoDirect = directions);
                               searchBarController.close();
                             },
                           ))

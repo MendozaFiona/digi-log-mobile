@@ -15,9 +15,23 @@ import 'package:flutter/services.dart';
 import 'dart:async';
 
 class MapScreen extends StatefulWidget {
+  const MapScreen({Key key}) : super(key: key);
   @override
   MapScreenState createState() => MapScreenState();
 }
+
+LatLng destPos;
+LatLng origPos = LatLng(8.484795864552531, 124.65660721180254); //4NOW
+//4NOW TEMP
+Marker orig = Marker(
+  markerId: MarkerId('origin'),
+  infoWindow: InfoWindow(title: 'Origin'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueGreen),
+  position: origPos,
+);
+// 4now
+Marker dest; // 4now
+Directions infoDirect;
 
 class MapScreenState extends State<MapScreen> {
   List<String> _visibleLocs = [];
@@ -160,13 +174,15 @@ class MapScreenState extends State<MapScreen> {
   );
 
   GoogleMapController _googleMapController;
-  Marker _origin; // 4now
-  Marker _destination; // 4now
-  Directions _info;
+  //Marker _origin; // 4now
+  //Marker _destination; // 4now
+  //Directions _info;
 
   @override
   void dispose() {
-    _googleMapController.dispose();
+    if (_googleMapController != null) {
+      _googleMapController.dispose();
+    }
     _connectivitySubscription.cancel();
     searchBarController.dispose();
     super.dispose();
@@ -193,18 +209,16 @@ class MapScreenState extends State<MapScreen> {
                 zoomControlsEnabled: false,
                 initialCameraPosition: _initialCameraPosition,
                 onMapCreated: (controller) => _googleMapController = controller,
-                // 4now
-                markers: {
-                  if (_origin != null) _origin,
-                  if (_destination != null) _destination
-                },
+                // 4now - original
+                //markers: {if (orig != null) orig, if (dest != null) dest},
+                markers: {if (orig != null) orig, if (dest != null) dest},
                 polylines: {
-                  if (_info != null)
+                  if (infoDirect != null)
                     Polyline(
                       polylineId: PolylineId('overview_polyline'),
                       color: Colors.red,
                       width: 5,
-                      points: _info.polylinePoints
+                      points: infoDirect.polylinePoints
                           .map((e) => LatLng(e.latitude, e.longitude))
                           .toList(),
                     )
@@ -230,18 +244,18 @@ class MapScreenState extends State<MapScreen> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               txtButtonDefault(
-                                  _googleMapController, _origin, 'ORIGIN'),
+                                  _googleMapController, orig, 'ORIGIN'),
                               txtButtonDefault(
-                                  _googleMapController, _destination, 'DEST.'),
+                                  _googleMapController, dest, 'DEST.'),
                             ],
                           ),
                           optionsDark(context, 'Show QR Code')
                         ]),
                   )),
-              if (_info != null)
+              if (infoDirect != null)
                 Positioned(
                   bottom: defaultHeight / 6 + 10.0,
-                  child: navDetails(_info, defaultWidth),
+                  child: navDetails(infoDirect, defaultWidth),
                 ),
             ]),
           ),
@@ -257,10 +271,10 @@ class MapScreenState extends State<MapScreen> {
 
   //4now
   void _addMarker(LatLng pos) async {
-    if (_origin == null || (_origin != null && _destination != null)) {
+    if (orig == null || (orig != null && dest != null)) {
       setState(() {
         //_origin =
-        _origin = Marker(
+        orig = Marker(
           markerId: MarkerId('origin'),
           infoWindow: InfoWindow(title: 'Origin'),
           icon:
@@ -268,24 +282,25 @@ class MapScreenState extends State<MapScreen> {
           position: pos,
         );
         // Reset destination
-        _destination = null;
-        _info = null; // 4now
+        dest = null;
+        infoDirect = null; // 4now
       });
-    } else {
+    }
+    /*else {
       setState(() {
-        _destination = Marker(
+        dest = Marker(
           markerId: MarkerId('destination'),
           infoWindow: InfoWindow(title: 'Destination'),
           icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
-          position: pos,
+          position: destPos,
         );
       });
 
       // Get directions
       final directions = await DirectionsRepository()
-          .getDirections(origin: _origin.position, destination: pos);
-      setState(() => _info = directions);
-    }
+          .getDirections(origin: origPos, destination: destPos);
+      setState(() => infoDirect = directions);
+    }*/
   }
   //4now
 }

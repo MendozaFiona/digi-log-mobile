@@ -19,6 +19,7 @@ class DirectionsRepository {
     final response = await _dio.get(_baseURL, queryParameters: {
       'origin': '${origin.latitude}, ${origin.longitude}',
       'destination': '${destination.latitude}, ${destination.longitude}',
+      //'destination': '${destination.latitude}, ${destination.longitude}',
       'key': googleAPIKey,
     });
 

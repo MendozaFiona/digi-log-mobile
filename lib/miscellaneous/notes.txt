@@ -4,6 +4,8 @@ github:
 https://github.com/eopeter/flutter_mapbox_navigation
 https://docs.mapbox.com/android/navigation/guides/offline-service/
 
+  destination pos format: LatLng(8.48486775002893, 124.6565444022417)
+
     /*FloatingSearchBarAction(
         showIfOpened: false,
         child: CircularButton(

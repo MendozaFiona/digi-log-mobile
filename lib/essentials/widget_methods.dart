@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:digi_logbook/general_pages/code_qr.dart';
 import 'small_widgets.dart';
+import 'ustp_locations.dart';
 
 import 'package:path/path.dart' as path;
 
@@ -113,4 +114,12 @@ bool checkTitle(_title) {
   }
 
   return _doesExist;
+}
+
+String findLoc(_term) {
+  for (String num in buildingLoc.keys) {
+    if (buildingLoc[num]['name'] == _term) {
+      return num;
+    }
+  }
 }
