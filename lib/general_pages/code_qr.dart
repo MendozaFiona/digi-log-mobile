@@ -19,12 +19,34 @@ class ShowCode extends StatefulWidget {
 
 class _ShowCodeState extends State<ShowCode> {
 //SingleChildScrollView(child: savedImages(context, imgMap))
+
   @override
   Widget build(BuildContext context) {
-    print(ustploc.buildingLoc['1']['name']);
-    return Scaffold(
-        body: Center(
-            child: SingleChildScrollView(child: savedImages(context, imgMap))));
+    return Scaffold(body: Center(child: savedImages(context, imgMap)));
+  }
+}
+
+class RefreshCode extends ShowCode {
+  //const RefreshCode({ Key? key }) : super(key: key);
+
+  @override
+  _RefreshCodeState createState() => _RefreshCodeState();
+}
+
+class _RefreshCodeState extends _ShowCodeState {
+  @override
+  // ignore: missing_return
+  Widget build(BuildContext context) {
+    if (imgMap != null) {
+      super.setState(() {
+        initImages();
+        Future.delayed(Duration.zero, () {
+          Navigator.popAndPushNamed(context, "/showQR");
+        });
+        //Navigator.pushNamed(context, "/showQR");
+      });
+    }
+    return Container();
   }
 }
 
@@ -114,6 +136,15 @@ Future initImages() async {
       key: (item) => item.split('/').last, value: (item) => item);
 
   //print(imgMap);
+}
+
+Future deleteImage(filename) async {
+  final directory = await getDir();
+  final file = File('${directory.path}/$filename');
+  print(file);
+
+  await file.delete();
+  initImages();
 }
 
 Future getDir() async {

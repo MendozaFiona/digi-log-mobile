@@ -1,8 +1,7 @@
 import 'widget_methods.dart';
-import 'package:digi_logbook/general_pages/map.dart';
+import 'package:digi_logbook/general_pages/code_qr.dart';
 
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 import 'package:flutter/material.dart';
 
 final titleController = TextEditingController();
@@ -90,6 +89,18 @@ ElevatedButton optionsLight(context,
       optionResponse(context, _imgMap, _optionText, titleController.text,
           _imageCode, _imgPick, _userSaveImage);
     },
+    onLongPress: () {
+      if (_imgMap != null) {
+        WillPopScope alert = dialogPrompt(context, "Delete Saved Image",
+            "Are you sure you want to delete this image?", null, _optionText);
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return alert;
+          },
+        );
+      }
+    },
     child: Text(_optionText,
         style: TextStyle(
           fontSize: 18,
@@ -138,7 +149,26 @@ TextButton okButton(context, [_additionalFunct]) {
       });
 }
 
-WillPopScope dialogPrompt(context, _headTxt, _content, [_additionalFunct]) {
+TextButton cancelButton(context) {
+  return TextButton(
+      child: Text("Cancel"),
+      onPressed: () {
+        Navigator.pop(context);
+      });
+}
+
+TextButton yesButton(context, _filename) {
+  return TextButton(
+      child: Text("Yes"),
+      onPressed: () {
+        deleteImage(_filename);
+        Navigator.pop(context);
+        Navigator.pushReplacementNamed(context, '/refQR');
+      });
+}
+
+WillPopScope dialogPrompt(context, _headTxt, _content,
+    [_additionalFunct, _filename]) {
   return WillPopScope(
       onWillPop: () async {
         return false;
@@ -149,8 +179,11 @@ WillPopScope dialogPrompt(context, _headTxt, _content, [_additionalFunct]) {
         title: Text(_headTxt),
         content: promptContentType(_content, "content"),
         actions: [
+          if (_headTxt == 'Delete Saved Image') cancelButton(context),
+          if (_headTxt == 'Delete Saved Image') yesButton(context, _filename),
           if (_additionalFunct != null) okButton(context, _additionalFunct),
-          if (_additionalFunct == null) okButton(context)
+          if (_additionalFunct == null && _headTxt != 'Delete Saved Image')
+            okButton(context),
         ],
       ));
 }

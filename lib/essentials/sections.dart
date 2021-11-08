@@ -10,7 +10,7 @@ Column optionSection(context,
   ]);
 }
 
-Align upperContent(_title, _functOption, _imageCode) {
+Align upperContent(_title, [_functOption, _imageCode]) {
   if (_functOption == 'optSect') {
     return Align(
       alignment: Alignment.bottomCenter,

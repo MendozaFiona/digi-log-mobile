@@ -16,6 +16,7 @@ void main() => runApp(MaterialApp(
         '/mapNav': (context) => MapScreen(),
         '/showQR': (context) => ShowCode(),
         '/regQR': (context) => RegisterCode(),
+        '/refQR': (context) => RefreshCode(),
       },
     ));
 

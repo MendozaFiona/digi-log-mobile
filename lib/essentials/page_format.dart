@@ -84,44 +84,59 @@ SafeArea bodyFormat(context, _title, _optionList, _functOption,
 }
 
 SafeArea savedImages(context, _imgMap) {
+  print(_imgMap);
   return SafeArea(
       child: Column(
-    mainAxisAlignment: MainAxisAlignment.center,
+    //mainAxisAlignment: MainAxisAlignment.center,
     children: [
-      Container(
-        padding: EdgeInsets.symmetric(vertical: 40.0),
-        decoration: BoxDecoration(
-          color: Color.fromRGBO(25, 24, 81, 1),
-          borderRadius: BorderRadius.vertical(
-              bottom: Radius.circular(50), top: Radius.circular(50)),
-        ),
-        child: Text('Saved QR Images',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 50,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-              fontFamily: 'Nunito',
-            )),
-      ),
-      Container(
-          margin: EdgeInsets.symmetric(vertical: 40, horizontal: 10),
-          padding: EdgeInsets.symmetric(horizontal: 40),
+      Flexible(
+        flex: 1,
+        child: Container(
+          padding: EdgeInsets.symmetric(vertical: 40.0),
           decoration: BoxDecoration(
-            color: Color.fromRGBO(255, 255, 255, 0.15),
-            border: Border.all(
-              color: Colors.white,
-            ),
-            borderRadius: BorderRadius.all(Radius.circular(20)),
+            color: Color.fromRGBO(25, 24, 81, 1),
+            borderRadius: BorderRadius.vertical(bottom: Radius.circular(50)),
           ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              if (_imgMap != null)
-                for (var title in _imgMap.keys)
-                  optionsLight(context, _imgMap, title),
-            ],
-          ))
+          child: upperContent('Saved QR Images', 'optSect'),
+        ),
+      ),
+      Flexible(
+        flex: 1,
+        child: Center(
+          child: SingleChildScrollView(
+            child: Container(
+                margin: EdgeInsets.symmetric(vertical: 40, horizontal: 10),
+                padding: EdgeInsets.symmetric(horizontal: 40),
+                decoration: BoxDecoration(
+                  color: Color.fromRGBO(255, 255, 255, 0.15),
+                  border: Border.all(
+                    color: Colors.white,
+                  ),
+                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                ),
+                child: Padding(
+                  padding: EdgeInsets.symmetric(vertical: 60),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      if (_imgMap != null)
+                        for (var title in _imgMap.keys)
+                          optionsLight(context, _imgMap, title),
+                      if (_imgMap.isEmpty)
+                        Text(
+                          'no images saved yet.',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontFamily: 'Nunito',
+                            fontSize: 18,
+                          ),
+                        )
+                    ],
+                  ),
+                )),
+          ),
+        ),
+      )
     ],
   ));
 }

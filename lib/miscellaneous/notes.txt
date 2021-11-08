@@ -4,6 +4,8 @@ github:
 https://github.com/eopeter/flutter_mapbox_navigation
 https://docs.mapbox.com/android/navigation/guides/offline-service/
 
+https://stackoverflow.com/questions/60137910/flutter-how-to-delete-a-file-inside-the-flutter-app-directory
+
   destination pos format: LatLng(8.48486775002893, 124.6565444022417)
 
     /*FloatingSearchBarAction(

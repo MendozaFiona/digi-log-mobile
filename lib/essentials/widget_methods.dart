@@ -116,6 +116,7 @@ bool checkTitle(_title) {
   return _doesExist;
 }
 
+// ignore: missing_return
 String findLoc(_term) {
   for (String num in buildingLoc.keys) {
     if (buildingLoc[num]['name'] == _term) {
