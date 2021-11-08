@@ -32,14 +32,13 @@ Marker orig = Marker(
 // 4now
 Marker dest; // 4now
 Directions infoDirect;
+String selectedTerm;
 
 class MapScreenState extends State<MapScreen> {
   List<String> _visibleLocs = [];
 
   // for showing terms according to what's currently typed
   List<String> filteredVisibleLocs;
-
-  String selectedTerm;
 
   List<String> filterLocs({
     @required String filter,

@@ -1,5 +1,6 @@
 import 'widget_methods.dart';
 import 'package:digi_logbook/general_pages/code_qr.dart';
+import 'package:digi_logbook/general_pages/map.dart';
 
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter/material.dart';
@@ -198,7 +199,7 @@ Container navDetails(_info, defaultWidth) {
       border: Border.all(color: Colors.grey),
     ),
     child: Text(
-      'Destination: Sample Destination\nDistance: ${_info.totalDistance}, ${_info.totalDuration}',
+      'Destination: $selectedTerm\nDistance: ${_info.totalDistance}, ${_info.totalDuration}',
       textAlign: TextAlign.center,
       style: TextStyle(
         fontSize: 14.0,
