@@ -121,7 +121,9 @@ ElevatedButton optionsLight(context,
 
 ElevatedButton optionsDark(context, _optionText) {
   return ElevatedButton(
-    onPressed: () {},
+    onPressed: () {
+      optionResponse(context, null, _optionText);
+    },
     child: Text(_optionText,
         style: TextStyle(
           fontSize: 18,

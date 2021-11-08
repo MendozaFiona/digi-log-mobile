@@ -8,6 +8,41 @@ https://stackoverflow.com/questions/60137910/flutter-how-to-delete-a-file-inside
 
   destination pos format: LatLng(8.48486775002893, 124.6565444022417)
 
+  //4now
+  void _addMarker(LatLng pos) async {
+    if (orig == null || (orig != null && dest != null)) {
+      setState(() {
+        //_origin =
+        orig = Marker(
+          markerId: MarkerId('origin'),
+          infoWindow: InfoWindow(title: 'Origin'),
+          icon:
+              BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueGreen),
+          position: pos,
+        );
+        // Reset destination
+        dest = null;
+        infoDirect = null; // 4now
+      });
+    }
+    else {
+      setState(() {
+        dest = Marker(
+          markerId: MarkerId('destination'),
+          infoWindow: InfoWindow(title: 'Destination'),
+          icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
+          position: destPos,
+        );
+      });
+
+      // Get directions
+      final directions = await DirectionsRepository()
+          .getDirections(origin: origPos, destination: destPos);
+      setState(() => infoDirect = directions);
+    }
+  }
+  //4now
+
     /*FloatingSearchBarAction(
         showIfOpened: false,
         child: CircularButton(

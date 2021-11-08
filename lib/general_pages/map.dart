@@ -222,7 +222,7 @@ class MapScreenState extends State<MapScreen> {
                           .toList(),
                     )
                 },
-                onLongPress: _addMarker,
+                //onLongPress: _addMarker,
                 // 4now
               ),
               Positioned(
@@ -267,39 +267,4 @@ class MapScreenState extends State<MapScreen> {
       ),
     );
   }
-
-  //4now
-  void _addMarker(LatLng pos) async {
-    if (orig == null || (orig != null && dest != null)) {
-      setState(() {
-        //_origin =
-        orig = Marker(
-          markerId: MarkerId('origin'),
-          infoWindow: InfoWindow(title: 'Origin'),
-          icon:
-              BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueGreen),
-          position: pos,
-        );
-        // Reset destination
-        dest = null;
-        infoDirect = null; // 4now
-      });
-    }
-    /*else {
-      setState(() {
-        dest = Marker(
-          markerId: MarkerId('destination'),
-          infoWindow: InfoWindow(title: 'Destination'),
-          icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
-          position: destPos,
-        );
-      });
-
-      // Get directions
-      final directions = await DirectionsRepository()
-          .getDirections(origin: origPos, destination: destPos);
-      setState(() => infoDirect = directions);
-    }*/
-  }
-  //4now
 }

@@ -8,8 +8,8 @@ import 'package:path/path.dart' as path;
 
 import 'package:flutter/material.dart';
 
-optionResponse(context, _imgMap, _optionText, _title, _imageCode, _imgPick,
-    _userSaveImage) {
+optionResponse(context, _imgMap, _optionText,
+    [_title, _imageCode, _imgPick, _userSaveImage]) {
   // For Pages Navigation
   if (_optionText == 'Cagayan de Oro') {
     Navigator.pushNamed(context, '/visitUSTP');
