@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\000 SISI\\digiLogMobile\\digiLogMobileGoogle\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-gl\\values-gl.xml",
+            "outputFile": "D:\\000 SISI\\digiLogMobile\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-gl\\values-gl.xml",
             "map": [
                 {
                     "source": "C:\\Users\\acer\\.gradle\\caches\\transforms-2\\files-2.1\\7c879cb157fab2c9a5d74c3d70fd64e3\\jetified-play-services-base-17.0.0\\res\\values-gl\\values.xml",

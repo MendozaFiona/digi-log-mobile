@@ -2,47 +2,6 @@ import 'package:flutter/material.dart';
 import 'small_widgets.dart';
 import 'sections.dart';
 
-SafeArea mapBody(_title) {
-  // i think dapat i array ning optionText
-  return SafeArea(
-    child: Column(children: [
-      Flexible(
-          flex: 3,
-          child: Container(
-            padding: EdgeInsets.only(bottom: 40.0),
-            decoration: BoxDecoration(
-              color: Color.fromRGBO(25, 24, 81, 1),
-              borderRadius: BorderRadius.vertical(bottom: Radius.circular(50)),
-            ),
-            child: Align(
-              //optional
-              alignment: Alignment.bottomCenter,
-              child: Text(_title,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                    fontFamily: 'Nunito',
-                  )),
-            ),
-          )),
-      Flexible(
-          flex: 11,
-          child: Center(
-              child: Container(
-            color: Colors.red,
-          ))),
-      Flexible(
-          flex: 2,
-          child: Center(
-              child: Container(
-            color: Colors.green,
-          )))
-    ]),
-  );
-}
-
 SafeArea bodyFormat(context, _title, _optionList, _functOption,
     [_imgPick, _imageCode, _userSaveImage]) {
   return SafeArea(

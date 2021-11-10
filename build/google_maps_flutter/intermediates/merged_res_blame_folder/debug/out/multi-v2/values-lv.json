@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\000 SISI\\digiLogMobile\\digiLogMobileGoogle\\build\\google_maps_flutter\\intermediates\\res\\merged\\debug\\values-lv\\values-lv.xml",
+            "outputFile": "D:\\000 SISI\\digiLogMobile\\build\\google_maps_flutter\\intermediates\\res\\merged\\debug\\values-lv\\values-lv.xml",
             "map": [
                 {
                     "source": "C:\\Users\\acer\\.gradle\\caches\\transforms-2\\files-2.1\\7c879cb157fab2c9a5d74c3d70fd64e3\\jetified-play-services-base-17.0.0\\res\\values-lv\\values.xml",
@@ -57,7 +57,7 @@
             ]
         },
         {
-            "outputFile": "D:\\000 SISI\\digiLogMobile\\digiLogMobileGoogle\\build\\google_maps_flutter\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-lv\\values-lv.xml",
+            "outputFile": "D:\\000 SISI\\digiLogMobile\\build\\google_maps_flutter\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-lv\\values-lv.xml",
             "map": [
                 {
                     "source": "C:\\Users\\acer\\.gradle\\caches\\transforms-2\\files-2.1\\7c879cb157fab2c9a5d74c3d70fd64e3\\jetified-play-services-base-17.0.0\\res\\values-lv\\values.xml",

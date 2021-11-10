@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\000 SISI\\digiLogMobile\\digiLogMobileGoogle\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values\\values.xml",
+            "outputFile": "D:\\000 SISI\\digiLogMobile\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values\\values.xml",
             "map": [
                 {
                     "source": "C:\\Users\\acer\\.gradle\\caches\\transforms-2\\files-2.1\\22596e141ed939448a45bb52248db646\\core-1.3.2\\res\\values\\values.xml",
@@ -78,7 +78,7 @@
                     }
                 },
                 {
-                    "source": "D:\\000 SISI\\digiLogMobile\\digiLogMobileGoogle\\android\\app\\src\\main\\res\\values\\styles.xml",
+                    "source": "D:\\000 SISI\\digiLogMobile\\android\\app\\src\\main\\res\\values\\styles.xml",
                     "from": {
                         "startLines": "3,14",
                         "startColumns": "4,4",
