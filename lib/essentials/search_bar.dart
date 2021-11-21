@@ -25,7 +25,6 @@ class _MapSearchState extends MapScreenState {
       debounceDelay: Duration(milliseconds: 500),
       onQueryChanged: (query) {
         setState(() {
-          print('passed setstate');
           filteredVisibleLocs = filterLocs(filter: query);
         });
       },

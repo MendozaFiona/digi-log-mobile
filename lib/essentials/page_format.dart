@@ -43,7 +43,6 @@ SafeArea bodyFormat(context, _title, _optionList, _functOption,
 }
 
 SafeArea savedImages(context, _imgMap) {
-  print(_imgMap);
   return SafeArea(
       child: Column(
     //mainAxisAlignment: MainAxisAlignment.center,

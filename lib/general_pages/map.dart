@@ -5,7 +5,6 @@ import '../directions_model.dart';
 import 'package:digi_logbook/essentials/small_widgets.dart';
 import 'package:digi_logbook/essentials/search_bar.dart';
 
-import 'package:digi_logbook/directions_repository.dart';
 import 'package:location/location.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -136,8 +135,6 @@ class MapScreenState extends State<MapScreen> {
   initConnectivity() async {
     ConnectivityResult result;
 
-    print("passes initConnectivity");
-
     try {
       var connectivityResult = await (Connectivity().checkConnectivity());
 
@@ -147,7 +144,6 @@ class MapScreenState extends State<MapScreen> {
         internetChangePrompt();
       }
     } on PlatformException catch (e) {
-      print(e.toString());
       return;
     }
 

@@ -38,7 +38,6 @@ optionResponse(context, _imgMap, _optionText,
 codePrompt(context, _imgMap, _optionText, _title) {
   for (var filename in _imgMap.entries) {
     if (filename.key == _optionText) {
-      print(filename.value);
       WillPopScope alert = dialogPrompt(
           context,
           "Title: " + filename.key,
@@ -69,7 +68,6 @@ registerPrompt(context, _title, _imageCode, [_userSaveImage]) {
       },
     );
   } else {
-    print('error here maybe');
     WillPopScope alert =
         dialogPrompt(context, "Image Saved", "Image Successfully Saved.");
     showDialog(
@@ -78,7 +76,7 @@ registerPrompt(context, _title, _imageCode, [_userSaveImage]) {
         return alert;
       },
     );
-    print("passed dialogPrompt");
+
     _userSaveImage(_imageCode, titleController.text);
   }
 }

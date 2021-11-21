@@ -1,5 +1,4 @@
 import 'package:digi_logbook/essentials/page_format.dart';
-import 'package:digi_logbook/essentials/ustp_locations.dart' as ustploc;
 
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
@@ -77,7 +76,6 @@ class _RegisterCodeState extends State<RegisterCode> {
   }
 
   Future userSaveImage(_imageCode, _title) async {
-    print('passed user Save Image');
     final imagePermanent = await saveImagePermanently(_imageCode.path, _title);
     setState(() => this.imageCode = imagePermanent);
   }
@@ -134,14 +132,11 @@ Future initImages() async {
 
   imgMap = Map.fromIterable(dirList,
       key: (item) => item.split('/').last, value: (item) => item);
-
-  //print(imgMap);
 }
 
 Future deleteImage(filename) async {
   final directory = await getDir();
   final file = File('${directory.path}/$filename');
-  print(file);
 
   await file.delete();
   initImages();
