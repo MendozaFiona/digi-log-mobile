@@ -1,3 +1,4 @@
+import 'package:digi_logbook/essentials/small_widgets.dart';
 import 'package:digi_logbook/essentials/ustp_locations.dart';
 import 'package:digi_logbook/essentials/widget_methods.dart';
 import 'package:digi_logbook/directions_repository.dart';
@@ -73,13 +74,21 @@ class _MapSearchState extends MapScreenState {
                                   dest = Marker(
                                     markerId: MarkerId('destination'),
                                     infoWindow:
-                                        InfoWindow(title: 'Destination'),
+                                        InfoWindow(title: 'destination'),
                                     icon: BitmapDescriptor.defaultMarkerWithHue(
                                         BitmapDescriptor.hueRed),
                                     position: destPos,
                                     onTap: () {
                                       print('passed here?');
                                       print(selectedTerm);
+                                      WillPopScope alert = dialogPrompt(context,
+                                          'testing', 'this is the content');
+                                      showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return alert;
+                                        },
+                                      );
                                     },
                                   );
                                 });
@@ -99,4 +108,8 @@ class _MapSearchState extends MapScreenState {
       },
     );
   }
+}
+
+class MapPopUp extends MapSearch {
+  _getOffices() {}
 }

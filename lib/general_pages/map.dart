@@ -180,6 +180,10 @@ class MapScreenState extends State<MapScreen> {
     }
     _connectivitySubscription.cancel();
     searchBarController.dispose();
+    selectedTerm = null;
+    infoDirect = null;
+    destPos = null;
+    dest = null;
     super.dispose();
   }
 
