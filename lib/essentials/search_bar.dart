@@ -77,6 +77,10 @@ class _MapSearchState extends MapScreenState {
                                     icon: BitmapDescriptor.defaultMarkerWithHue(
                                         BitmapDescriptor.hueRed),
                                     position: destPos,
+                                    onTap: () {
+                                      print('passed here?');
+                                      print(selectedTerm);
+                                    },
                                   );
                                 });
                               });

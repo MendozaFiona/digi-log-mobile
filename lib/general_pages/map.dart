@@ -204,9 +204,10 @@ class MapScreenState extends State<MapScreen> {
                 zoomControlsEnabled: false,
                 initialCameraPosition: _initialCameraPosition,
                 onMapCreated: (controller) => _googleMapController = controller,
+                mapType: MapType.satellite,
+                minMaxZoomPreference: MinMaxZoomPreference(18.0, 21.0),
                 // 4now - original
-                //markers: {if (orig != null) orig, if (dest != null) dest},
-                markers: {if (orig != null) orig, if (dest != null) dest},
+                markers: {if (origPos != null) orig, if (destPos != null) dest},
                 polylines: {
                   if (infoDirect != null)
                     Polyline(
