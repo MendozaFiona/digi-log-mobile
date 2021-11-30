@@ -127,7 +127,6 @@ class MapPopUp extends MapSearch {
           title: Text(label),
           content: officesColumn(bldg),
           actions: [
-            //if (_additionalFunct != null)
             okButton(context),
           ],
         ));
@@ -138,19 +137,27 @@ class MapPopUp extends MapSearch {
       future: getOffices(bldg),
       builder: (context, snapshot) {
         double fullHeight = MediaQuery.of(context).size.height;
+        double fullWidth = MediaQuery.of(context).size.width;
 
-        print(fullHeight);
+        print(fullWidth);
 
         if (snapshot.hasData) {
-          return Column(
-            children: [
-              for (int i = 0; i < snapshot.data.length; i++)
-                officeTile(
-                  name: snapshot.data[i].name,
-                  floor: snapshot.data[i].floor.toString(),
-                  status: snapshot.data[i].status,
-                ),
-            ],
+          return Container(
+            height: fullHeight * 0.3,
+            width: fullWidth * 0.8,
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  for (int i = 0; i < snapshot.data.length; i++)
+                    officeTile(
+                      name: snapshot.data[i].name,
+                      floor: snapshot.data[i].floor.toString(),
+                      status: snapshot.data[i].status,
+                      boxWidth: fullWidth,
+                    ),
+                ],
+              ),
+            ),
           );
         }
         return Container(
@@ -161,22 +168,89 @@ class MapPopUp extends MapSearch {
     );
   }
 
-  officeTile({name, floor, status}) {
+  officeTile({name, floor, status, boxWidth}) {
+    var mainColor = Color.fromRGBO(25, 24, 81, 1);
+    var circleColor = Colors.green;
+
+    if (status == 'offline') {
+      circleColor = Colors.grey;
+    }
     return Container(
-      child: Row(
-        children: [
-          Flexible(flex: 5, child: Text(name)),
-          Flexible(
-            flex: 3,
-            child: Column(
-              children: [
-                Text("Floor Level: " + floor),
-                Text(status),
-              ],
-            ),
+      decoration: tileStyle(mainColor),
+      padding: EdgeInsets.fromLTRB(5, 10, 0, 10),
+      child: Center(
+        child: IntrinsicHeight(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Flexible(
+                  flex: 5,
+                  child: Container(
+                    width: (boxWidth / 8) * 5,
+                    child: Text(
+                      name,
+                      style: officeFont(),
+                    ),
+                  )),
+              VerticalDivider(
+                color: Color.fromRGBO(253, 180, 23, 1),
+                thickness: 2,
+              ),
+              Flexible(
+                flex: 3,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Text(
+                      "Floor Level: " + floor,
+                      style: officeFont(),
+                    ),
+                    Divider(
+                      thickness: 2,
+                      color: mainColor,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          status,
+                          style: officeFont(),
+                        ),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Container(
+                          height: 10,
+                          width: 10,
+                          decoration: BoxDecoration(
+                            color: circleColor,
+                            shape: BoxShape.circle,
+                          ),
+                          child: null,
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
+    );
+  }
+
+  tileStyle(color) {
+    return BoxDecoration(
+        border: Border(top: BorderSide(width: 2, color: color)));
+  }
+
+  officeFont() {
+    return TextStyle(
+      fontSize: 16,
+      color: Colors.black,
+      fontFamily: 'Roboto',
     );
   }
 }
