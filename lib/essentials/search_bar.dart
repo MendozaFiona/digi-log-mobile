@@ -84,7 +84,7 @@ class _MapSearchState extends MapScreenState {
                                     position: destPos,
                                     onTap: () {
                                       mapPopUp._getOffices(int.parse(_key),
-                                          context); // this is bldg num
+                                          context, term); // this is bldg num
                                     },
                                   );
                                 });
@@ -107,8 +107,8 @@ class _MapSearchState extends MapScreenState {
 }
 
 class MapPopUp extends MapSearch {
-  _getOffices(int bldg, context) async {
-    WillPopScope alert = buildingOffices(bldg);
+  _getOffices(int bldg, context, label) async {
+    WillPopScope alert = buildingOffices(bldg, context, label);
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -117,19 +117,18 @@ class MapPopUp extends MapSearch {
     );
   }
 
-  buildingOffices(bldg) {
+  buildingOffices(bldg, context, label) {
     return WillPopScope(
         onWillPop: () async {
           return false;
         },
         child: AlertDialog(
           insetPadding: EdgeInsets.all(10),
-          //contentPadding: ,
-          title: Text('test title'),
+          title: Text(label),
           content: officesColumn(bldg),
           actions: [
             //if (_additionalFunct != null)
-            //  okButton(context, _additionalFunct),
+            okButton(context),
           ],
         ));
   }
@@ -138,18 +137,46 @@ class MapPopUp extends MapSearch {
     return FutureBuilder<List<OfficeInfo>>(
       future: getOffices(bldg),
       builder: (context, snapshot) {
-        print(snapshot.hasData);
-        if (snapshot.hasData) {
-          for (int i = 0; i < snapshot.data.length; i++) {
-            print(snapshot.data[i].id);
-          }
+        double fullHeight = MediaQuery.of(context).size.height;
 
+        print(fullHeight);
+
+        if (snapshot.hasData) {
           return Column(
-            children: [Text('test')],
+            children: [
+              for (int i = 0; i < snapshot.data.length; i++)
+                officeTile(
+                  name: snapshot.data[i].name,
+                  floor: snapshot.data[i].floor.toString(),
+                  status: snapshot.data[i].status,
+                ),
+            ],
           );
         }
-        return CircularProgressIndicator();
+        return Container(
+            padding: EdgeInsets.only(top: fullHeight * 0.02),
+            height: fullHeight * 0.05,
+            child: Center(child: Text('No offices available')));
       },
+    );
+  }
+
+  officeTile({name, floor, status}) {
+    return Container(
+      child: Row(
+        children: [
+          Flexible(flex: 5, child: Text(name)),
+          Flexible(
+            flex: 3,
+            child: Column(
+              children: [
+                Text("Floor Level: " + floor),
+                Text(status),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
