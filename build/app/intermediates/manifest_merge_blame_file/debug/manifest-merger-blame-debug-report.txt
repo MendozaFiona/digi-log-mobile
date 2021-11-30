@@ -38,136 +38,138 @@
 23-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\acer\.gradle\caches\transforms-2\files-2.1\c5de8972dacd649c27c247c9e16de3ac\jetified-play-services-maps-17.0.0\AndroidManifest.xml:28:9-32
 24
 25    <application
-25-->D:\000 SISI\digiLogMobile\android\app\src\main\AndroidManifest.xml:8:4-51:19
+25-->D:\000 SISI\digiLogMobile\android\app\src\main\AndroidManifest.xml:8:4-52:19
 26        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
 26-->[androidx.core:core:1.3.2] C:\Users\acer\.gradle\caches\transforms-2\files-2.1\22596e141ed939448a45bb52248db646\core-1.3.2\AndroidManifest.xml:24:18-86
 27        android:debuggable="true"
 28        android:icon="@mipmap/ic_launcher"
-28-->D:\000 SISI\digiLogMobile\android\app\src\main\AndroidManifest.xml:10:9-43
-29        android:label="digi_logbook" >
-29-->D:\000 SISI\digiLogMobile\android\app\src\main\AndroidManifest.xml:9:9-37
-30        <activity
-30-->D:\000 SISI\digiLogMobile\android\app\src\main\AndroidManifest.xml:11:9-39:20
-31            android:name="com.example.digi_logbook.MainActivity"
-31-->D:\000 SISI\digiLogMobile\android\app\src\main\AndroidManifest.xml:12:13-41
-32            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
-32-->D:\000 SISI\digiLogMobile\android\app\src\main\AndroidManifest.xml:15:13-163
-33            android:hardwareAccelerated="true"
-33-->D:\000 SISI\digiLogMobile\android\app\src\main\AndroidManifest.xml:16:13-47
-34            android:launchMode="singleTop"
-34-->D:\000 SISI\digiLogMobile\android\app\src\main\AndroidManifest.xml:13:13-43
-35            android:theme="@style/LaunchTheme"
-35-->D:\000 SISI\digiLogMobile\android\app\src\main\AndroidManifest.xml:14:13-47
-36            android:windowSoftInputMode="adjustResize" >
-36-->D:\000 SISI\digiLogMobile\android\app\src\main\AndroidManifest.xml:17:13-55
-37
-38            <!--
-39                 Specifies an Android theme to apply to this Activity as soon as
-40                 the Android process has started. This theme is visible to the user
-41                 while the Flutter UI initializes. After that, this theme continues
-42                 to determine the Window background behind the Flutter UI.
-43            -->
-44            <meta-data
-44-->D:\000 SISI\digiLogMobile\android\app\src\main\AndroidManifest.xml:22:13-25:17
-45                android:name="io.flutter.embedding.android.NormalTheme"
-45-->D:\000 SISI\digiLogMobile\android\app\src\main\AndroidManifest.xml:23:15-70
-46                android:resource="@style/NormalTheme" />
-46-->D:\000 SISI\digiLogMobile\android\app\src\main\AndroidManifest.xml:24:15-52
-47            <!--
-48                 Displays an Android View that continues showing the launch screen
-49                 Drawable until Flutter paints its first frame, then this splash
-50                 screen fades out. A splash screen is useful to avoid any visual
-51                 gap between the end of Android's launch screen and the painting of
-52                 Flutter's first frame.
-53            -->
-54            <meta-data
-54-->D:\000 SISI\digiLogMobile\android\app\src\main\AndroidManifest.xml:31:13-34:17
-55                android:name="io.flutter.embedding.android.SplashScreenDrawable"
-55-->D:\000 SISI\digiLogMobile\android\app\src\main\AndroidManifest.xml:32:15-79
-56                android:resource="@drawable/launch_background" />
-56-->D:\000 SISI\digiLogMobile\android\app\src\main\AndroidManifest.xml:33:15-61
-57
-58            <intent-filter>
-58-->D:\000 SISI\digiLogMobile\android\app\src\main\AndroidManifest.xml:35:13-38:29
-59                <action android:name="android.intent.action.MAIN" />
-59-->D:\000 SISI\digiLogMobile\android\app\src\main\AndroidManifest.xml:36:17-68
-59-->D:\000 SISI\digiLogMobile\android\app\src\main\AndroidManifest.xml:36:25-66
-60
-61                <category android:name="android.intent.category.LAUNCHER" />
-61-->D:\000 SISI\digiLogMobile\android\app\src\main\AndroidManifest.xml:37:17-76
-61-->D:\000 SISI\digiLogMobile\android\app\src\main\AndroidManifest.xml:37:27-74
-62            </intent-filter>
-63        </activity>
-64        <!--
-65             Don't delete the meta-data below.
-66             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
-67        -->
-68        <meta-data
-68-->D:\000 SISI\digiLogMobile\android\app\src\main\AndroidManifest.xml:42:9-44:33
-69            android:name="flutterEmbedding"
-69-->D:\000 SISI\digiLogMobile\android\app\src\main\AndroidManifest.xml:43:13-44
-70            android:value="2" />
-70-->D:\000 SISI\digiLogMobile\android\app\src\main\AndroidManifest.xml:44:13-30
-71        <meta-data
-71-->D:\000 SISI\digiLogMobile\android\app\src\main\AndroidManifest.xml:45:9-47:71
-72            android:name="com.google.android.geo.API_KEY"
-72-->D:\000 SISI\digiLogMobile\android\app\src\main\AndroidManifest.xml:46:13-58
-73            android:value="AIzaSyAZMoeYwVxlqO0o9r48HDrNonRcaBPg0hk" />
-73-->D:\000 SISI\digiLogMobile\android\app\src\main\AndroidManifest.xml:47:13-68
-74        <!--
-75            AIzaSyCGShAceyIm1LHL2mLja0eKCKDjoXV2RzY
-76            AIzaSyAZMoeYwVxlqO0o9r48HDrNonRcaBPg0hk (ours)
-77        -->
-78        <service
-78-->[:location] D:\000 SISI\digiLogMobile\build\location\intermediates\library_manifest\debug\AndroidManifest.xml:11:9-15:56
-79            android:name="com.lyokone.location.FlutterLocationService"
-79-->[:location] D:\000 SISI\digiLogMobile\build\location\intermediates\library_manifest\debug\AndroidManifest.xml:12:13-71
-80            android:enabled="true"
-80-->[:location] D:\000 SISI\digiLogMobile\build\location\intermediates\library_manifest\debug\AndroidManifest.xml:13:13-35
-81            android:exported="false"
-81-->[:location] D:\000 SISI\digiLogMobile\build\location\intermediates\library_manifest\debug\AndroidManifest.xml:14:13-37
-82            android:foregroundServiceType="location" />
-82-->[:location] D:\000 SISI\digiLogMobile\build\location\intermediates\library_manifest\debug\AndroidManifest.xml:15:13-53
-83
-84        <provider
-84-->[:image_picker] D:\000 SISI\digiLogMobile\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-16:20
-85            android:name="io.flutter.plugins.imagepicker.ImagePickerFileProvider"
-85-->[:image_picker] D:\000 SISI\digiLogMobile\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-82
-86            android:authorities="com.example.digi_logbook.flutter.image_provider"
-86-->[:image_picker] D:\000 SISI\digiLogMobile\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:10:13-74
-87            android:exported="false"
-87-->[:image_picker] D:\000 SISI\digiLogMobile\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:11:13-37
-88            android:grantUriPermissions="true" >
-88-->[:image_picker] D:\000 SISI\digiLogMobile\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:12:13-47
-89            <meta-data
-89-->[:image_picker] D:\000 SISI\digiLogMobile\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:13:13-15:75
-90                android:name="android.support.FILE_PROVIDER_PATHS"
-90-->[:image_picker] D:\000 SISI\digiLogMobile\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:14:17-67
-91                android:resource="@xml/flutter_image_picker_file_paths" />
-91-->[:image_picker] D:\000 SISI\digiLogMobile\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:15:17-72
-92        </provider> <!-- Needs to be explicitly declared on P+ -->
-93        <uses-library
-93-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\acer\.gradle\caches\transforms-2\files-2.1\c5de8972dacd649c27c247c9e16de3ac\jetified-play-services-maps-17.0.0\AndroidManifest.xml:33:9-35:40
-94            android:name="org.apache.http.legacy"
-94-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\acer\.gradle\caches\transforms-2\files-2.1\c5de8972dacd649c27c247c9e16de3ac\jetified-play-services-maps-17.0.0\AndroidManifest.xml:34:13-50
-95            android:required="false" />
-95-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\acer\.gradle\caches\transforms-2\files-2.1\c5de8972dacd649c27c247c9e16de3ac\jetified-play-services-maps-17.0.0\AndroidManifest.xml:35:13-37
-96
-97        <activity
-97-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\acer\.gradle\caches\transforms-2\files-2.1\7c879cb157fab2c9a5d74c3d70fd64e3\jetified-play-services-base-17.0.0\AndroidManifest.xml:23:9-26:75
-98            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-98-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\acer\.gradle\caches\transforms-2\files-2.1\7c879cb157fab2c9a5d74c3d70fd64e3\jetified-play-services-base-17.0.0\AndroidManifest.xml:24:13-79
-99            android:exported="false"
-99-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\acer\.gradle\caches\transforms-2\files-2.1\7c879cb157fab2c9a5d74c3d70fd64e3\jetified-play-services-base-17.0.0\AndroidManifest.xml:25:13-37
-100            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-100-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\acer\.gradle\caches\transforms-2\files-2.1\7c879cb157fab2c9a5d74c3d70fd64e3\jetified-play-services-base-17.0.0\AndroidManifest.xml:26:13-72
-101
-102        <meta-data
-102-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\acer\.gradle\caches\transforms-2\files-2.1\3c8e7eb3d21ac94d08f658f6d8a1c9f3\jetified-play-services-basement-17.0.0\AndroidManifest.xml:23:9-25:69
-103            android:name="com.google.android.gms.version"
-103-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\acer\.gradle\caches\transforms-2\files-2.1\3c8e7eb3d21ac94d08f658f6d8a1c9f3\jetified-play-services-basement-17.0.0\AndroidManifest.xml:24:13-58
-104            android:value="@integer/google_play_services_version" />
-104-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\acer\.gradle\caches\transforms-2\files-2.1\3c8e7eb3d21ac94d08f658f6d8a1c9f3\jetified-play-services-basement-17.0.0\AndroidManifest.xml:25:13-66
-105    </application>
-106
-107</manifest>
+28-->D:\000 SISI\digiLogMobile\android\app\src\main\AndroidManifest.xml:11:9-43
+29        android:label="digi_logbook"
+29-->D:\000 SISI\digiLogMobile\android\app\src\main\AndroidManifest.xml:10:9-37
+30        android:usesCleartextTraffic="true" >
+30-->D:\000 SISI\digiLogMobile\android\app\src\main\AndroidManifest.xml:9:9-44
+31        <activity
+31-->D:\000 SISI\digiLogMobile\android\app\src\main\AndroidManifest.xml:12:9-40:20
+32            android:name="com.example.digi_logbook.MainActivity"
+32-->D:\000 SISI\digiLogMobile\android\app\src\main\AndroidManifest.xml:13:13-41
+33            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+33-->D:\000 SISI\digiLogMobile\android\app\src\main\AndroidManifest.xml:16:13-163
+34            android:hardwareAccelerated="true"
+34-->D:\000 SISI\digiLogMobile\android\app\src\main\AndroidManifest.xml:17:13-47
+35            android:launchMode="singleTop"
+35-->D:\000 SISI\digiLogMobile\android\app\src\main\AndroidManifest.xml:14:13-43
+36            android:theme="@style/LaunchTheme"
+36-->D:\000 SISI\digiLogMobile\android\app\src\main\AndroidManifest.xml:15:13-47
+37            android:windowSoftInputMode="adjustResize" >
+37-->D:\000 SISI\digiLogMobile\android\app\src\main\AndroidManifest.xml:18:13-55
+38
+39            <!--
+40                 Specifies an Android theme to apply to this Activity as soon as
+41                 the Android process has started. This theme is visible to the user
+42                 while the Flutter UI initializes. After that, this theme continues
+43                 to determine the Window background behind the Flutter UI.
+44            -->
+45            <meta-data
+45-->D:\000 SISI\digiLogMobile\android\app\src\main\AndroidManifest.xml:23:13-26:17
+46                android:name="io.flutter.embedding.android.NormalTheme"
+46-->D:\000 SISI\digiLogMobile\android\app\src\main\AndroidManifest.xml:24:15-70
+47                android:resource="@style/NormalTheme" />
+47-->D:\000 SISI\digiLogMobile\android\app\src\main\AndroidManifest.xml:25:15-52
+48            <!--
+49                 Displays an Android View that continues showing the launch screen
+50                 Drawable until Flutter paints its first frame, then this splash
+51                 screen fades out. A splash screen is useful to avoid any visual
+52                 gap between the end of Android's launch screen and the painting of
+53                 Flutter's first frame.
+54            -->
+55            <meta-data
+55-->D:\000 SISI\digiLogMobile\android\app\src\main\AndroidManifest.xml:32:13-35:17
+56                android:name="io.flutter.embedding.android.SplashScreenDrawable"
+56-->D:\000 SISI\digiLogMobile\android\app\src\main\AndroidManifest.xml:33:15-79
+57                android:resource="@drawable/launch_background" />
+57-->D:\000 SISI\digiLogMobile\android\app\src\main\AndroidManifest.xml:34:15-61
+58
+59            <intent-filter>
+59-->D:\000 SISI\digiLogMobile\android\app\src\main\AndroidManifest.xml:36:13-39:29
+60                <action android:name="android.intent.action.MAIN" />
+60-->D:\000 SISI\digiLogMobile\android\app\src\main\AndroidManifest.xml:37:17-68
+60-->D:\000 SISI\digiLogMobile\android\app\src\main\AndroidManifest.xml:37:25-66
+61
+62                <category android:name="android.intent.category.LAUNCHER" />
+62-->D:\000 SISI\digiLogMobile\android\app\src\main\AndroidManifest.xml:38:17-76
+62-->D:\000 SISI\digiLogMobile\android\app\src\main\AndroidManifest.xml:38:27-74
+63            </intent-filter>
+64        </activity>
+65        <!--
+66             Don't delete the meta-data below.
+67             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
+68        -->
+69        <meta-data
+69-->D:\000 SISI\digiLogMobile\android\app\src\main\AndroidManifest.xml:43:9-45:33
+70            android:name="flutterEmbedding"
+70-->D:\000 SISI\digiLogMobile\android\app\src\main\AndroidManifest.xml:44:13-44
+71            android:value="2" />
+71-->D:\000 SISI\digiLogMobile\android\app\src\main\AndroidManifest.xml:45:13-30
+72        <meta-data
+72-->D:\000 SISI\digiLogMobile\android\app\src\main\AndroidManifest.xml:46:9-48:71
+73            android:name="com.google.android.geo.API_KEY"
+73-->D:\000 SISI\digiLogMobile\android\app\src\main\AndroidManifest.xml:47:13-58
+74            android:value="AIzaSyAZMoeYwVxlqO0o9r48HDrNonRcaBPg0hk" />
+74-->D:\000 SISI\digiLogMobile\android\app\src\main\AndroidManifest.xml:48:13-68
+75        <!--
+76            AIzaSyCGShAceyIm1LHL2mLja0eKCKDjoXV2RzY
+77            AIzaSyAZMoeYwVxlqO0o9r48HDrNonRcaBPg0hk (ours)
+78        -->
+79        <service
+79-->[:location] D:\000 SISI\digiLogMobile\build\location\intermediates\library_manifest\debug\AndroidManifest.xml:11:9-15:56
+80            android:name="com.lyokone.location.FlutterLocationService"
+80-->[:location] D:\000 SISI\digiLogMobile\build\location\intermediates\library_manifest\debug\AndroidManifest.xml:12:13-71
+81            android:enabled="true"
+81-->[:location] D:\000 SISI\digiLogMobile\build\location\intermediates\library_manifest\debug\AndroidManifest.xml:13:13-35
+82            android:exported="false"
+82-->[:location] D:\000 SISI\digiLogMobile\build\location\intermediates\library_manifest\debug\AndroidManifest.xml:14:13-37
+83            android:foregroundServiceType="location" />
+83-->[:location] D:\000 SISI\digiLogMobile\build\location\intermediates\library_manifest\debug\AndroidManifest.xml:15:13-53
+84
+85        <provider
+85-->[:image_picker] D:\000 SISI\digiLogMobile\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-16:20
+86            android:name="io.flutter.plugins.imagepicker.ImagePickerFileProvider"
+86-->[:image_picker] D:\000 SISI\digiLogMobile\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-82
+87            android:authorities="com.example.digi_logbook.flutter.image_provider"
+87-->[:image_picker] D:\000 SISI\digiLogMobile\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:10:13-74
+88            android:exported="false"
+88-->[:image_picker] D:\000 SISI\digiLogMobile\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:11:13-37
+89            android:grantUriPermissions="true" >
+89-->[:image_picker] D:\000 SISI\digiLogMobile\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:12:13-47
+90            <meta-data
+90-->[:image_picker] D:\000 SISI\digiLogMobile\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:13:13-15:75
+91                android:name="android.support.FILE_PROVIDER_PATHS"
+91-->[:image_picker] D:\000 SISI\digiLogMobile\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:14:17-67
+92                android:resource="@xml/flutter_image_picker_file_paths" />
+92-->[:image_picker] D:\000 SISI\digiLogMobile\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:15:17-72
+93        </provider> <!-- Needs to be explicitly declared on P+ -->
+94        <uses-library
+94-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\acer\.gradle\caches\transforms-2\files-2.1\c5de8972dacd649c27c247c9e16de3ac\jetified-play-services-maps-17.0.0\AndroidManifest.xml:33:9-35:40
+95            android:name="org.apache.http.legacy"
+95-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\acer\.gradle\caches\transforms-2\files-2.1\c5de8972dacd649c27c247c9e16de3ac\jetified-play-services-maps-17.0.0\AndroidManifest.xml:34:13-50
+96            android:required="false" />
+96-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\acer\.gradle\caches\transforms-2\files-2.1\c5de8972dacd649c27c247c9e16de3ac\jetified-play-services-maps-17.0.0\AndroidManifest.xml:35:13-37
+97
+98        <activity
+98-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\acer\.gradle\caches\transforms-2\files-2.1\7c879cb157fab2c9a5d74c3d70fd64e3\jetified-play-services-base-17.0.0\AndroidManifest.xml:23:9-26:75
+99            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+99-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\acer\.gradle\caches\transforms-2\files-2.1\7c879cb157fab2c9a5d74c3d70fd64e3\jetified-play-services-base-17.0.0\AndroidManifest.xml:24:13-79
+100            android:exported="false"
+100-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\acer\.gradle\caches\transforms-2\files-2.1\7c879cb157fab2c9a5d74c3d70fd64e3\jetified-play-services-base-17.0.0\AndroidManifest.xml:25:13-37
+101            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+101-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\acer\.gradle\caches\transforms-2\files-2.1\7c879cb157fab2c9a5d74c3d70fd64e3\jetified-play-services-base-17.0.0\AndroidManifest.xml:26:13-72
+102
+103        <meta-data
+103-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\acer\.gradle\caches\transforms-2\files-2.1\3c8e7eb3d21ac94d08f658f6d8a1c9f3\jetified-play-services-basement-17.0.0\AndroidManifest.xml:23:9-25:69
+104            android:name="com.google.android.gms.version"
+104-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\acer\.gradle\caches\transforms-2\files-2.1\3c8e7eb3d21ac94d08f658f6d8a1c9f3\jetified-play-services-basement-17.0.0\AndroidManifest.xml:24:13-58
+105            android:value="@integer/google_play_services_version" />
+105-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\acer\.gradle\caches\transforms-2\files-2.1\3c8e7eb3d21ac94d08f658f6d8a1c9f3\jetified-play-services-basement-17.0.0\AndroidManifest.xml:25:13-66
+106    </application>
+107
+108</manifest>

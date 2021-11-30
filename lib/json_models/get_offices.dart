@@ -1,12 +1,12 @@
-class EntryInfo {
-  final String id;
+class OfficeInfo {
+  final int id;
   final String name;
   final int buildingNum;
   final String status;
 
-  EntryInfo({this.id, this.name, this.buildingNum, this.status});
-  factory EntryInfo.fromJson(Map<String, dynamic> json) {
-    return EntryInfo(
+  OfficeInfo({this.id, this.name, this.buildingNum, this.status});
+  factory OfficeInfo.fromJson(Map<String, dynamic> json) {
+    return OfficeInfo(
       id: json['id'],
       name: json['name'],
       buildingNum: json['building_num'],

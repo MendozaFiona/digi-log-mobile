@@ -2,6 +2,8 @@ import 'package:digi_logbook/essentials/small_widgets.dart';
 import 'package:digi_logbook/essentials/ustp_locations.dart';
 import 'package:digi_logbook/essentials/widget_methods.dart';
 import 'package:digi_logbook/directions_repository.dart';
+import 'package:digi_logbook/json_models/get_offices.dart';
+import 'package:digi_logbook/services/offices_service.dart';
 import 'package:flutter/material.dart';
 import 'package:digi_logbook/general_pages/map.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -70,6 +72,8 @@ class _MapSearchState extends MapScreenState {
                                 dest = null;
                                 infoDirect = null;
 
+                                MapPopUp mapPopUp = MapPopUp();
+
                                 setState(() {
                                   dest = Marker(
                                     markerId: MarkerId('destination'),
@@ -79,16 +83,8 @@ class _MapSearchState extends MapScreenState {
                                         BitmapDescriptor.hueRed),
                                     position: destPos,
                                     onTap: () {
-                                      print('passed here?');
-                                      print(selectedTerm);
-                                      WillPopScope alert = dialogPrompt(context,
-                                          'testing', 'this is the content');
-                                      showDialog(
-                                        context: context,
-                                        builder: (BuildContext context) {
-                                          return alert;
-                                        },
-                                      );
+                                      mapPopUp._getOffices(int.parse(_key),
+                                          context); // this is bldg num
                                     },
                                   );
                                 });
@@ -111,5 +107,49 @@ class _MapSearchState extends MapScreenState {
 }
 
 class MapPopUp extends MapSearch {
-  _getOffices() {}
+  _getOffices(int bldg, context) async {
+    WillPopScope alert = buildingOffices(bldg);
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
+  buildingOffices(bldg) {
+    return WillPopScope(
+        onWillPop: () async {
+          return false;
+        },
+        child: AlertDialog(
+          insetPadding: EdgeInsets.all(10),
+          //contentPadding: ,
+          title: Text('test title'),
+          content: officesColumn(bldg),
+          actions: [
+            //if (_additionalFunct != null)
+            //  okButton(context, _additionalFunct),
+          ],
+        ));
+  }
+
+  officesColumn(bldg) {
+    return FutureBuilder<List<OfficeInfo>>(
+      future: getOffices(bldg),
+      builder: (context, snapshot) {
+        print(snapshot.hasData);
+        if (snapshot.hasData) {
+          for (int i = 0; i < snapshot.data.length; i++) {
+            print(snapshot.data[i].id);
+          }
+
+          return Column(
+            children: [Text('test')],
+          );
+        }
+        return CircularProgressIndicator();
+      },
+    );
+  }
 }
