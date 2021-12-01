@@ -64,7 +64,7 @@ TextButton txtButtonDefault(cntrlr, pos, title) {
         ? () => cntrlr.animateCamera(
               CameraUpdate.newCameraPosition(
                 CameraPosition(
-                  target: pos.position,
+                  target: pos,
                   zoom: 21.0,
                   tilt: 50.0,
                 ),

@@ -20,14 +20,17 @@ class MapScreen extends StatefulWidget {
 }
 
 LatLng destPos;
-LatLng origPos = LatLng(8.484795864552531, 124.65660721180254); //4NOW
+LatLng
+    origPos; //4NOW -- here is causing error when removed  = LatLng(8.484795864552531,
+//124.65660721180254)
 //4NOW TEMP
-Marker orig = Marker(
+Marker orig;
+/* = Marker(
   markerId: MarkerId('origin'),
   infoWindow: InfoWindow(title: 'Origin'),
   icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueGreen),
   position: origPos,
-);
+);*/
 // 4now
 Marker dest; // 4now
 Directions infoDirect;
@@ -66,6 +69,7 @@ class MapScreenState extends State<MapScreen> {
 
   // for the search bar
   FloatingSearchBarController searchBarController;
+  Location location;
 
   @override
   void initState() {
@@ -74,14 +78,58 @@ class MapScreenState extends State<MapScreen> {
     searchTerms();
     searchBarController = FloatingSearchBarController();
     filteredVisibleLocs = filterLocs(filter: null);
+
+    location = new Location();
+
+    location.onLocationChanged.listen((LocationData cLoc) {
+      // cLoc contains the lat and long of the
+      // current user's position in real time,
+      // so we're holding on to it
+      origPos = LatLng(cLoc.latitude, cLoc.longitude);
+      //updatePinOnMap();
+      updateOrigMarker();
+    });
+
+    setOriginalPosition();
+
     super.initState();
 
     _connectivitySubscription =
         _connectivity.onConnectivityChanged.listen(_updateConnectionStatus);
   }
 
+  void setOriginalPosition() async {
+    // set the initial location by pulling the user's
+    // current location from the location's getLocation()
+    LocationData currentPos = await location.getLocation();
+    origPos = LatLng(currentPos.latitude, currentPos.longitude);
+  }
+
+  void updateOrigMarker() async {
+    // anchor
+
+    //setOriginalPosition();
+
+    /*CameraPosition cPosition = CameraPosition(
+      target: origPos,
+      zoom: 21.0,
+      tilt: 50.0,
+    );
+    _googleMapController
+        .animateCamera(CameraUpdate.newCameraPosition(cPosition));*/
+
+    setState(() {
+      orig = Marker(
+        markerId: MarkerId('origin'),
+        infoWindow: InfoWindow(title: 'Origin'),
+        icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueGreen),
+        position: origPos,
+      );
+    });
+  }
+
   permitLocation() async {
-    Location location = new Location();
+    location = new Location(); //initially had Location
 
     bool _serviceEnabled;
     PermissionStatus _permissionGranted;
@@ -169,6 +217,7 @@ class MapScreenState extends State<MapScreen> {
   );
 
   GoogleMapController _googleMapController;
+  //Set<Marker> _markers = Set<Marker>();
   //Marker _origin; // 4now
   //Marker _destination; // 4now
   //Directions _info;
@@ -192,6 +241,15 @@ class MapScreenState extends State<MapScreen> {
     final defaultWidth = MediaQuery.of(context).size.width;
     final defaultHeight = MediaQuery.of(context).size.height;
 
+    setState(() {
+      orig = Marker(
+        markerId: MarkerId('origin'),
+        infoWindow: InfoWindow(title: 'Origin'),
+        icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueGreen),
+        position: origPos,
+      );
+    });
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color.fromRGBO(25, 24, 81, 1),
@@ -207,11 +265,18 @@ class MapScreenState extends State<MapScreen> {
                 myLocationButtonEnabled: false,
                 zoomControlsEnabled: false,
                 initialCameraPosition: _initialCameraPosition,
-                onMapCreated: (controller) => _googleMapController = controller,
-                mapType: MapType.satellite,
+                onMapCreated: (controller) {
+                  setState(() {
+                    _googleMapController = controller;
+                  });
+                },
+                mapType: MapType.hybrid,
                 minMaxZoomPreference: MinMaxZoomPreference(18.0, 21.0),
                 // 4now - original
-                markers: {if (origPos != null) orig, if (destPos != null) dest},
+                markers: {
+                  if (origPos != null) orig,
+                  if (destPos != null) dest
+                }, // causing error
                 polylines: {
                   if (infoDirect != null)
                     Polyline(
@@ -244,9 +309,9 @@ class MapScreenState extends State<MapScreen> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               txtButtonDefault(
-                                  _googleMapController, orig, 'ORIGIN'),
+                                  _googleMapController, origPos, 'ORIGIN'),
                               txtButtonDefault(
-                                  _googleMapController, dest, 'DEST.'),
+                                  _googleMapController, destPos, 'DEST.'),
                             ],
                           ),
                           optionsDark(context, 'Show QR Code')

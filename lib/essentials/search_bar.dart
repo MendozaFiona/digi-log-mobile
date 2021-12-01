@@ -75,6 +75,8 @@ class _MapSearchState extends MapScreenState {
                                 MapPopUp mapPopUp = MapPopUp();
 
                                 setState(() {
+                                  //super.setOriginalPosition();
+                                  print(origPos);
                                   dest = Marker(
                                     markerId: MarkerId('destination'),
                                     infoWindow:
@@ -82,6 +84,7 @@ class _MapSearchState extends MapScreenState {
                                     icon: BitmapDescriptor.defaultMarkerWithHue(
                                         BitmapDescriptor.hueRed),
                                     position: destPos,
+                                    draggable: false,
                                     onTap: () {
                                       mapPopUp._getOffices(int.parse(_key),
                                           context, term); // this is bldg num
@@ -90,6 +93,7 @@ class _MapSearchState extends MapScreenState {
                                 });
                               });
                               // Get directions
+                              print('before directions:' + origPos.toString());
                               final directions = await DirectionsRepository()
                                   .getDirections(
                                       origin: origPos, destination: destPos);
@@ -138,8 +142,6 @@ class MapPopUp extends MapSearch {
       builder: (context, snapshot) {
         double fullHeight = MediaQuery.of(context).size.height;
         double fullWidth = MediaQuery.of(context).size.width;
-
-        print(fullWidth);
 
         if (snapshot.hasData) {
           return Container(
