@@ -1,4 +1,0 @@
-#Mon Dec 06 14:41:13 SGT 2021
-base.0=D\:\\000 SISI\\digiLogMobile\\build\\app\\intermediates\\dex\\release\\minifyReleaseWithR8\\classes.dex
-path.0=classes.dex
-renamed.0=classes.dex
