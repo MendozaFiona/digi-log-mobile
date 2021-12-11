@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import '.env.dart';
-import 'directions_model.dart';
+import '../.env.dart';
+import '../json_models/directions_model.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class DirectionsRepository {

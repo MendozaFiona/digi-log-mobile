@@ -1,7 +1,7 @@
-import 'package:digi_logbook/essentials/ustp_locations.dart';
+import 'package:digi_logbook/services/places_service.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 
-import '../directions_model.dart';
+import '../json_models/directions_model.dart';
 import 'package:digi_logbook/essentials/small_widgets.dart';
 import 'package:digi_logbook/essentials/search_bar.dart';
 
@@ -20,21 +20,12 @@ class MapScreen extends StatefulWidget {
 }
 
 LatLng destPos;
-LatLng
-    origPos; //4NOW -- here is causing error when removed  = LatLng(8.484795864552531,
-//124.65660721180254)
-//4NOW TEMP
+LatLng origPos;
 Marker orig;
-/* = Marker(
-  markerId: MarkerId('origin'),
-  infoWindow: InfoWindow(title: 'Origin'),
-  icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueGreen),
-  position: origPos,
-);*/
-// 4now
-Marker dest; // 4now
+Marker dest;
 Directions infoDirect;
 String selectedTerm;
+var placeNames;
 
 class MapScreenState extends State<MapScreen> {
   List<String> _visibleLocs = [];
@@ -54,12 +45,14 @@ class MapScreenState extends State<MapScreen> {
     }
   }
 
-  void searchTerms() {
+  void searchTerms() async {
     // to avoid duplicates whenever this method is called
     _visibleLocs.clear();
 
-    for (String num in buildingLoc.keys) {
-      _visibleLocs.add(buildingLoc[num]['name']);
+    placeNames = await getPlaces();
+
+    for (int i = 0; i < placeNames.length; i++) {
+      _visibleLocs.add(placeNames[i].name);
     }
 
     _visibleLocs.sort();
@@ -82,11 +75,7 @@ class MapScreenState extends State<MapScreen> {
     location = new Location();
 
     location.onLocationChanged.listen((LocationData cLoc) {
-      // cLoc contains the lat and long of the
-      // current user's position in real time,
-      // so we're holding on to it
       origPos = LatLng(cLoc.latitude, cLoc.longitude);
-      //updatePinOnMap();
       updateOrigMarker();
     });
 
@@ -99,25 +88,11 @@ class MapScreenState extends State<MapScreen> {
   }
 
   void setOriginalPosition() async {
-    // set the initial location by pulling the user's
-    // current location from the location's getLocation()
     LocationData currentPos = await location.getLocation();
     origPos = LatLng(currentPos.latitude, currentPos.longitude);
   }
 
   void updateOrigMarker() async {
-    // anchor
-
-    //setOriginalPosition();
-
-    /*CameraPosition cPosition = CameraPosition(
-      target: origPos,
-      zoom: 21.0,
-      tilt: 50.0,
-    );
-    _googleMapController
-        .animateCamera(CameraUpdate.newCameraPosition(cPosition));*/
-
     setState(() {
       orig = Marker(
         markerId: MarkerId('origin'),
@@ -217,10 +192,6 @@ class MapScreenState extends State<MapScreen> {
   );
 
   GoogleMapController _googleMapController;
-  //Set<Marker> _markers = Set<Marker>();
-  //Marker _origin; // 4now
-  //Marker _destination; // 4now
-  //Directions _info;
 
   @override
   void dispose() {
@@ -272,11 +243,7 @@ class MapScreenState extends State<MapScreen> {
                 },
                 mapType: MapType.hybrid,
                 minMaxZoomPreference: MinMaxZoomPreference(18.0, 21.0),
-                // 4now - original
-                markers: {
-                  if (origPos != null) orig,
-                  if (destPos != null) dest
-                }, // causing error
+                markers: {if (origPos != null) orig, if (destPos != null) dest},
                 polylines: {
                   if (infoDirect != null)
                     Polyline(
@@ -288,8 +255,6 @@ class MapScreenState extends State<MapScreen> {
                           .toList(),
                     )
                 },
-                //onLongPress: _addMarker,
-                // 4now
               ),
               Positioned(
                   bottom: 0,

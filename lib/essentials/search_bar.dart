@@ -1,7 +1,6 @@
 import 'package:digi_logbook/essentials/small_widgets.dart';
-import 'package:digi_logbook/essentials/ustp_locations.dart';
-import 'package:digi_logbook/essentials/widget_methods.dart';
-import 'package:digi_logbook/directions_repository.dart';
+import 'package:digi_logbook/services/coordinates_service.dart';
+import 'package:digi_logbook/services/directions_repository.dart';
 import 'package:digi_logbook/json_models/get_offices.dart';
 import 'package:digi_logbook/services/offices_service.dart';
 import 'package:flutter/material.dart';
@@ -61,11 +60,18 @@ class _MapSearchState extends MapScreenState {
                             ),
                             leading: Icon(Icons.place),
                             onTap: () async {
+                              var coordinates = await getCoordinatess(term);
                               super.setState(() {
                                 selectedTerm = term;
-                                var _key = findLoc(term);
-                                double _lat = buildingLoc[_key]['latitude'];
-                                double _long = buildingLoc[_key]['longitude'];
+
+                                double _lat =
+                                    double.parse(coordinates[0].latitude);
+                                double _long =
+                                    double.parse(coordinates[0].longitude);
+
+                                int bldg = coordinates[0].bldgNum;
+                                String bldgName = coordinates[0].bldgName;
+
                                 LatLng _latLng = LatLng(_lat, _long);
                                 destPos = _latLng;
 
@@ -75,8 +81,6 @@ class _MapSearchState extends MapScreenState {
                                 MapPopUp mapPopUp = MapPopUp();
 
                                 setState(() {
-                                  //super.setOriginalPosition();
-                                  print(origPos);
                                   dest = Marker(
                                     markerId: MarkerId('destination'),
                                     infoWindow:
@@ -86,14 +90,13 @@ class _MapSearchState extends MapScreenState {
                                     position: destPos,
                                     draggable: false,
                                     onTap: () {
-                                      mapPopUp._getOffices(int.parse(_key),
-                                          context, term); // this is bldg num
+                                      mapPopUp._getOffices(bldg, context,
+                                          bldgName); // this is bldg num
                                     },
                                   );
                                 });
                               });
                               // Get directions
-                              print('before directions:' + origPos.toString());
                               final directions = await DirectionsRepository()
                                   .getDirections(
                                       origin: origPos, destination: destPos);
